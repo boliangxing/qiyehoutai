@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>设备详情</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/xhxstyle.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/plan/1002/plan.css">
+<script type="text/javascript" src="__PUBLIC__/js/echarts.common.min.js"></script>
+
+<style>
+body {margin:0; padding:0; color:#2bb9cd; background-color: #000;background-image:url(__PUBLIC__/images/bg_01.png); } 
+body,td,th,div,p{	margin:0; padding:0;color: #2bb9cd; font-family:'微软雅黑'; }
+
+#container{margin:0 auto;padding:0;width:1540px;height:1000px;overflow:hidden; }
+
+.fl {float:left;}
+.fr {float:right;}
+.clear{ clear:both}
+.H300 {height:260px;}
+.H330 { height:330px; }
+.H350 { height:350px; }
+
+.boxs {width:100%; overflow:hidden;}
+.boxhead {
+    width:100%; height:50px;
+    background-color:#0a2543; 
+    border-top-left-radius: 10px; 
+    border-top-right-radius:10px;
+    border-bottom-right-radius: 0; 
+    border-bottom-left-radius:0;
+} 
+.boxhead p {padding-left:25px;line-height:48px; font-size: 20px;  color:#e4e9f7;}
+
+
+.boxcon {border:1px solid #0a2543; overflow:hidden; text-align: left; }
+
+
+#head {width:100%;height:110px;overflow:hidden; }
+
+	.face {float:left; padding:15px;width:150px; text-align:center}
+	.weather {float:left;padding-left:50px; width:600px;height:110px; }		    
+	.tianqi_ico {float:left;padding:15px; }
+	.tianqi {float:left; width:180px;font-size:30px;padding-top:20px;}
+	.riqi {float:left;  padding-top:50px;font-size:30px;}	
+	.subtitle{float:right; width:35%;padding:5px;font-size:22px;    line-height: 100px;text-align: right; }
+
+
+
+#main{width:100%;overflow:auto;} 
+
+.left {float:left;width:970px;}
+
+    .guolutu {
+    	margin:0 auto; width:970px; height: 530px; background:#000;
+    	background-image:url(__PUBLIC__/plan/1002/glbg.png);
+    	background-repeat: no-repeat;
+    	background-position: center;
+        border-radius:10px;
+    	}
+
+
+    .biao_baojing {margin:10px auto; width:970px; height: 400px; }
+
+    	.biao_con {float:left; width:629px; height:310px; }
+		.biao_bg {width:183px; margin-top:10px; margin-left:17px;height:218px;background-color: #1e1e1f;border-radius: 10px; }
+
+		.test { margin: 0 auto; }
+
+		.biao h1{padding-top:10px; text-align: center; font-size:36px;color:#fff; line-height:40px;}
+		.biao h1 span {padding-left:15px;  font-size:16px;color:#fff; line-height:40px;}
+		.biao p { font-size:16px;color:#fff; line-height:20px;text-align: center;}
+
+
+
+	    .baojing {float:right; width:330px; height: 310px;}
+
+		.baojing_list{width:90%; margin: 5px auto; }
+		.baojing_list li {line-height:1.5; }
+
+		.baojing_list li.bjzt_0{color:#808080; }
+		.baojing_list li.bjzt_1{color:#30a030; }
+		.baojing_list li.bjzt_2{color:#3dd4e2; }
+		.baojing_list li.bjzt_3{color:#fe0000; } 
+
+.right{float:right; width:550px;overflow:auto;}
+
+.userinfo {padding:10px;font-size:20px;line-height:32px; }
+.userinfo p{color:#a0a0a0;  }
+
+.quxian { height:390px; text-align: center;padding-top:10px;overflow: hidden; }
+.baobiao {margin-top:10px;}
+
+</style>
+
+
+</head>
+<body> 
+
+
+<div id="container">
+<div id="head">    
+        <div class="face"><img src="__PUBLIC__/images/user.png" width="70" height="70" /></div>
+        <div class="weather"> 
+            <div class="tianqi_ico"><img src="__PUBLIC__/images/snowfall.png" width="70" height="70" alt="tianqi" /></div>       
+            <div class="tianqi">                
+                <p>保定市</p>
+                <p>-2~16℃</p>
+            </div>        
+        	<div class="riqi"><?php 
+        	echo date('Y-m-d'); 
+        	//获取中文星期几：
+			$weekarray=array("日","一","二","三","四","五","六");
+			//先定义一个数组
+			echo "  星期".$weekarray[date("w")]; 
+		?></div>
+        
+        </div>
+        
+        <div class="subtitle"><h2>学好弟子规,做好中国人!</h1></div>
+        <div class="clear"></div>
+    </div>
+ 
+    <div class="clear"></div>
+ 
+    <div class="main"> 
+        <div class="left">             
+            <div class="guolutu">
+ 
+				<div class="parame">
+
+                    <div class="code_x1000" title="放大扩展按钮">
+                        <a href="?"><img src="__PUBLIC__/images/kuozhan.png"></a>
+                    </div>
+                    <div class="code_x1001" title="取暖出水">
+                        <h1>取暖出水</h1>   
+                    </div>
+                    <div class="code_x1002" title="取暖回水">
+                        <h1>取暖回水</h1>   
+                    </div>
+
+
+    				<volist name="parame" id="vo">
+
+        				<div class="code_{$vo.parcode}" title="{$vo.parname}">
+        					<h1>{$vo.parname}</h1> 
+        					<h2>{$vo.value}</h2> 
+        					<p><span class="parcolor_{$vo.color}">{$vo['value_name']|default="*"}</span></p>
+        				</div>
+
+
+                        <eq name='vo.parcode' value="k200">
+                        <?php  if ($vo['value']==1){ ?>  
+                        <div class="huo" title="火焰"><img src="__PUBLIC__/images/huo.gif"></div>
+                        <div class="x_{$vo.parcode} fengshan" title="风扇"><img src="__PUBLIC__/images/fengshan.gif"></div>
+                        <?php }else{ ?> 
+                        <div class="bj_{$vo.parcode} fengshan" title="报警"><img src="__PUBLIC__/images/red-llight.png"></div>
+                        <?php } ?>                    
+                        </eq>  
+
+                        <eq name='vo.parcode' value="k403">
+                        <?php  if ($vo['value']<2){ ?>   
+                        <div class="x_{$vo.parcode} fengshan" title="主循环泵风扇"><img src="__PUBLIC__/images/fengshan.gif"></div>
+                        <?php } ?>                  
+                        </eq>  
+
+                        <eq name='vo.parcode' value="k205">
+                        <?php  if ($vo['value']==1){ ?>   
+                        <div class="x_{$vo.parcode} fengshan" title="备循环泵风扇"><img src="__PUBLIC__/images/fengshan.gif"></div>
+                        <?php } ?>                  
+                        </eq> 
+
+                        <eq name='vo.parcode' value="k380">
+                        <?php  if ($vo['value']<2){ ?>   
+                        <div class="x_{$vo.parcode}" title="低水位报警"><img src="__PUBLIC__/images/red-llight.png"></div>
+                        <?php } ?>                  
+                        </eq>       
+
+
+                        <eq name='vo.parcode' value="k384">
+                        <?php  if ($vo['value']<2){ ?>   
+                        <div class="x_{$vo.parcode}" title="出水温度高报警"><img src="__PUBLIC__/images/red-llight.png"></div>
+                        <?php } ?>                  
+                        </eq>      
+
+
+
+    				</volist>
+
+				</div>
+
+
+            </div>            
+            <div class="biao_baojing">  
+         
+                <div class="biao_con">          
+                        <div class="boxs"> 
+                            <div class="boxhead"><p>温度信息</p></div>
+                    		<div class="boxcon H300"> 
+
+                                <div class="fl biao_bg">
+									<volist name="parame" id="vo">
+									<eq name='vo.parcode' value="d25">
+									    <div  class="biao">
+											<h1>{$vo.value}<span>℃</span></h1>
+
+											<button id="tijiao1" type="button" style="display: none"></button>
+											<input type="hidden" id="yanqi" value="{$vo.value}"></input>
+
+											<div class="kd">
+												<div class="test" id="test">{$vo.value}</div>	
+											</div>									
+											<p>当前排烟温度</p>
+										</div>
+									</eq>									
+									</volist>
+                                </div>
+
+
+                                <div class="fl biao_bg">
+									<volist name="parame" id="vo">
+									<eq name='vo.parcode' value="d22">
+									    <div  class="biao">
+											<h1>{$vo.value}<span>℃</span></h1>
+
+									        <button id="tijiao2" type="button" style="display: none"></button>
+											<input type="hidden" id="chushui" value="{$vo.value}"></input>
+
+											<div class="kd">
+												<div class="test" id="test1">{$vo.value}</div>	
+											</div>									
+											<p>当前出水温度</p>
+										</div>
+									</eq>									
+									</volist>
+                                </div>
+ 
+ 
+
+
+                                <div class="fl biao_bg">
+									<volist name="parame" id="vo">
+									<eq name='vo.parcode' value="d23">
+									    <div  class="biao">
+											<h1>{$vo.value}<span>℃</span></h1>
+
+									        <button id="tijiao3" type="button" style="display: none"></button>
+											<input type="hidden" id="huishui" value="{$vo.value}"></input>
+
+											<div class="kd">
+												<div class="test" id="test2">{$vo.value}</div>	
+											</div>									
+											<p>当前回水温度</p>
+										</div>
+									</eq>									
+									</volist>
+                                </div>
+
+
+ 
+
+                    		</div>  
+						</div>       
+            	</div>     
+     
+                <div class="baojing">                    
+               
+                        <div class="boxs"> 
+                            <div class="boxhead"><p>报警信息</p></div>
+                    		<div class="boxcon H300">   
+                                <ul class="baojing_list">
+                                    <li class="bjzt_1">2016-08-12  燃烧器故障,点火失败</li>
+                                    <li class="bjzt_2">2016-08-12  燃烧器故障,点火失败</li>
+                                    <li class="bjzt_3">2016-08-12  燃烧器故障,点火失败</li>
+                                    <li class="bjzt_0">2016-08-12  燃烧器故障,点火失败</li>
+                                    <li class="bjzt_1">2016-08-12  燃烧器故障,点火失败</li>
+                                    <li class="bjzt_1">2016-08-12  燃烧器故障,点火失败</li>
+                                    <li class="bjzt_2">2016-08-12  燃烧器故障,点火失败</li>
+                                    <li class="bjzt_2">2016-08-12  燃烧器故障,点火失败</li>
+                                    <li class="bjzt_3">2016-08-12  燃烧器故障,点火失败</li>
+                                    <li class="bjzt_3">2016-08-12  燃烧器故障,点火失败</li>
+                                </ul>
+							</div>                                         
+                         </div>          
+                </div>
+                
+            </div>
+        </div>
+        <div class="right"> 
+                 
+                <div class="fac_info">                 
+                        <div class="boxs"> 
+                            <div class="boxhead"><p>设备信息</p></div>
+                    		<div class="boxcon H350">  
+                                <div class="userinfo"> 
+                                    <p>用户名称: <span>{$info.userr}</span></p>                      
+                                    <p>安装地址: <span>{$customer.customer_address}</span></p>                      
+                                    <p>联系电话: <span>{$customer.customer_tel}</span></p>               
+                                    <p>联系人员: 曹经理</p> 
+                                    <hr/>  
+                                    <p>产品型号: {$customer.plcname}</p>                      
+                                    <p>出厂编号: xhx28092</p>                      
+                                    <p>备注名称: <span>{$info.note}</span></p>   
+                                    <p>通讯编号: <span>{$info.dtuid}</span></p>  
+                                </div>
+ 
+                            </div>  
+                                                         
+                         </div>          
+                </div>
+ 
+
+                <div class="baobiao">                    
+        
+                        <div class="boxs"> 
+                            <div class="boxhead"><p class="fl">温度曲线图</p><span class="fr"><a href="{:U('facility/facility_report?fid='.$info['fid'])}" class="fr set_btn">报表</a></span></div> 
+                            <div class="boxcon quxian">
+                   			 <img src="__PUBLIC__/images/baobiao.png" width="520" height="400" />
+							 </div>                                         
+                        </div>          
+                </div>
+
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <div class="clear"></div>
+
+</div>
+
+
+
+
+
+
+
+<!-- 
+
+				 <div class="otherdata">
+						<volist name="parame" id="vo">
+							<gt name='vo.ishow' value="1">	
+								<p class="x_{$vo.parcode}">
+								{$vo.parcode}
+								{$vo.parname}	
+								{$vo.value}	
+								<span class="parcolor_{$vo.color}">{$vo['value_name']|default="*"}</span>
+								</p>	 
+							</gt>
+						</volist>
+					</div>
+
+ -->
+
+
+		 
+ 
+</body>
+</html>
+
+
+
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.4.min.js"></script>
+<script src="__PUBLIC__/js/jquery.speedometer.js"></script>
+<script src="__PUBLIC__/js/jquery.jqcanvas-modified.js"></script>
+<script>
+
+$(function(){
+
+    $('#test').speedometer();
+     $('#tijiao1').click(function(){
+    	var $val=$('#yanqi').val();
+     	
+    	if ($val<=100) {
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:100,background:"kd_03.png",maximum:100});
+    	}
+    	if ($val>100&&$val<=500) {
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:500,background:"kd500.png",maximum:500});
+    	}
+    	if ($val>500&&$val<=1000) {
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:1000,background:"kd1000.jpg",maximum:1000});
+    	}
+        
+    });
+    $('#test1').speedometer();
+     $('#tijiao2').click(function(){
+    	var $val=$('#chushui').val();
+    	if ($val<=100) {
+    		$('#test1').speedometer({ percentage: $val || 0 ,scale:100,background:"kd_03.png",maximum:100});
+    	}
+    	if ($val>100&&$val<=500) {
+    		$('#test1').speedometer({ percentage: $val || 0 ,scale:500,background:"kd500.png",maximum:500});
+    	}
+    	if ($val>500&&$val<=1000) {
+    		$('#test1').speedometer({ percentage: $val || 0 ,scale:1000,background:"kd1000.jpg",maximum:1000});
+    	}
+        
+    });
+    $('#test2').speedometer();
+     $('#tijiao3').click(function(){
+    	var $val=$('#huishui').val();
+    	if ($val<=100) {
+    		$('#test2').speedometer({ percentage: $val || 0 ,scale:100,background:"kd_03.png",maximum:100});
+    	}
+    	if ($val>100&&$val<=500) {
+    		$('#test2').speedometer({ percentage: $val || 0 ,scale:500,background:"kd500.png",maximum:500});
+    	}
+    	if ($val>500&&$val<=1000) {
+    		$('#test2').speedometer({ percentage: $val || 0 ,scale:1000,background:"kd1000.jpg",maximum:1000});
+    	}
+        
+    });
+     $('#tijiao1').click();
+      $('#tijiao2').click();
+       $('#tijiao3').click();
+
+
+});
+
+</script> 
+
+
+   
+
+

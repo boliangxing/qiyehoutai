@@ -1,0 +1,281 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<LINK rel="Bookmark" href="/favicon.ico" >
+<LINK rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title></title>
+<style type="text/css">
+.input-text:hover, .textarea:hover {
+	    border: solid 1px #3bb4f2;
+}
+.main-table td select {
+    border: 1px solid #e2e2e4;
+    border-radius: 3px;
+    padding: 3px 5px;
+}
+.main-table td {
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+.form-line button {
+    background: #5a98de;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 16px;
+    margin-right: 5px;
+}
+.main-head {
+    border-bottom: 1px solid #eff2f7;
+    font-size: 16px;
+    line-height: 40px;
+    padding: 0 15px;
+}
+.bread-nav {
+    background: #fafafa;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: #999;
+}
+.bread-nav li {
+    float: left;
+}
+.bread-nav li a{
+    font-size: 15px;
+}
+.bread-nav i {
+    margin-right: 5px;
+    font-size: 14px;
+}
+.bread-nav:before, .bread-nav:after {
+    content: "";
+    display: block;
+    height: 0;
+    font-size: 0;
+    clear: both;
+    visibility: hidden;
+}
+</style>
+</head>
+<body>
+<section>
+<ul class="bread-nav">
+	<li><a href="#"><i class="icon-home"></i>首页</a> / </li>
+	<li><a href="#">系统设置</a> / </li>
+	<li>&nbsp;<a href="#">面板显示方案</a></li>
+<div class="clear"></div>
+</ul>
+<header class="main-head">
+面板方案设定和换算方式设定
+
+</header>
+<form action="" method="post" enctype="multipart/form-data">
+	<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<tbody><tr>
+					<td class="bt">方案编号:</td>
+					<td colspan="2">{$info.planid}</td>
+				</tr>
+				<tr>
+					<td class="bt">方案名称:</td>
+					<td colspan="2"><input type="text" name="planname" value="{$info.planname}" class="input-text"></td>
+				</tr>
+				<tr>
+					<td class="bt">PLC型号</td>
+					<td colspan="2"><select name="plcid" id="plcid" class="input-text">
+									<volist name="plc" id="pl">
+										<option value="{$pl.plcid}">{$pl.plcname}</option>
+										
+										</volist>
+									  </select>
+					</td>
+				</tr>
+				<tr>
+					<td class="bt">备注说明:</td>
+					<td colspan="2">
+						<textarea name="memo" id="memo" rows="4" cols="100" class="input-text" style="height: 60px;">{$info.memo}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="bt">面板界面图：</td>
+					
+
+							<td colspan="2"><input name="photo" type="file" id="photo" style="width: 230px" value="" class="input-text"></td>
+						
+				</tr>
+
+				<tr>
+					<td class="bt">系统开关代码:</td>
+					<td><input type="text" name="sysswcode" id="sysswcode" size="6" value="{$info.sysswcode}" class="input-text"></td>
+					<td>如蒸汽发生器的系统开关代码是: 71.11 </td>
+				</tr>
+				<tr>
+					<td class="bt">故障输出代码:</td>
+					<td><input type="text" name="bjswcode" id="bjswcode" size="6" value="{$info.bjswcode}" class="input-text"></td>
+					<td>如LJ8A的故障输出代码是: 538.8 </td>
+				</tr>
+				<tr>
+					<td class="bt">停机时是否保存:</td>
+					<td><input type="checkbox" id="ifsave" value="1" name="ifsave" <eq name="info.ifsave" value="1"> checked </eq>></td>
+				  <td>停机时数据是否保存,针对蒸汽发生器和LJ6A2(单挑指令的有效)不选上,其他机器<font color="#ff3300">要选上</font></td>
+				</tr>
+				<tr>
+					<td class="bt">关机时是否显示:</td>
+					<td><input type="checkbox" id="offishow" name="offishow" value="1"  <eq name="info.offishow" value="1"> checked </eq>></td>
+				  <td>关机时候数据是否显示在报表</td>
+				</tr>
+				<tr>
+					<td class="bt">是否启用报警:</td>
+					<td><input type="checkbox" name="ifbaojing" id="ifbaojing" value="1" <eq name="info.ifbaojing" value="1"> checked </eq>></td>
+					<td>是否启用报警,针对蒸汽发生器和LJ6A2(单挑指令的有效),其他机器<font color="#ff3300">不要选上</font></td>
+				</tr>
+				<tr>
+					<td class="bt">需替换的代码:</td>
+					<td><input type="text" name="thcode" id="thcode" size="6" value="{$info.thcode}" class="input-text"></td>
+					<td>如蒸汽发生器的水泵开关=关,那就填写: 71.6 </td>
+				</tr>
+				<tr>
+					<td class="bt">替换条件:</td>
+					<td><input type="text" name="thtj" id="thtj" size="6" value="{$info.thtj}" class="input-text"></td>
+					<td>如蒸汽发生器的水泵开关=关,那就填写: 0</td>
+				</tr>
+
+				<tr>
+					<td class="bt">替换结果:</td>
+					<td colspan="2">
+						<textarea name="thjg" id="thjg" rows="8" cols="100" class="input-text" style="height: 120px;">{$info.thjg}</textarea>
+						<br>
+						注意:  每个条件用分号<font color="#ff0000">;</font>隔开,如: <font size="" color="#00f">73=0;72=0;</font>
+				  </td>
+				</tr>
+				<tr>
+					<td colspan="3"><input type="hidden" name="planid" value="{$info.planid}" size="28/" class="input-text">
+					   <div class="form-line submit" style="float:left">
+			<button type="submit">确定</button>
+			 </div>
+					</td>
+				</tr>
+		</tbody>
+	</table>
+</form>
+	<br>
+</section>
+
+<!--_footer 作为公共模版分离出去--> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/messages_zh.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> 
+<!--/_footer /作为公共模版分离出去--> 
+
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-admin-add").validate({
+		rules:{
+			adminName:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			password:{
+				required:true,
+			},
+			password2:{
+				required:true,
+				equalTo: "#password"
+			},
+			sex:{
+				required:true,
+			},
+			phone:{
+				required:true,
+				isPhone:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			adminRole:{
+				required:true,
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$(form).ajaxSubmit();
+			var index = parent.layer.getFrameIndex(window.name);
+			parent.$('.btn-refresh').click();
+			parent.layer.close(index);
+		}
+	});
+});
+
+setValue('plcid', "{$info.plcid}");
+
+	function setValue(name, value){
+        var first = name.substr(0,1), input, i = 0, val;
+        if(value === "") return;
+        if("#" === first || "." === first){
+            input = $(name);
+        } else {
+            input = $("[name='" + name + "']");
+        }
+
+        if(input.eq(0).is(":radio")) { //单选按钮
+            input.filter("[value='" + value + "']").each(function(){this.checked = true});
+        } else if(input.eq(0).is(":checkbox")) { //复选框
+            if(!$.isArray(value)){
+                val = new Array();
+                val[0] = value;
+            } else {
+                val = value;
+            }
+            for(i = 0, len = val.length; i < len; i++){
+                input.filter("[value='" + val[i] + "']").each(function(){this.checked = true});
+            }
+        } else {  //其他表单选项直接设置值
+            input.val(value);
+        }
+}
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

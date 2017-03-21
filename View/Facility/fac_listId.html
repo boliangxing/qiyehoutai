@@ -1,0 +1,178 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/bootstrap.min.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>全部设备列表</title>
+<style type="text/css">
+	.pd-5 span{margin-right: 10px;}
+	.hah input{height: 31px;line-height: 31px;border:1px solid #999;background: #f0f0f0;padding: 0 10px;font-size: 14px;color: #000;}
+	.hah button{height: 31px;border:1px solid #999;background: #999;padding: 0 10px;font-size: 14px;color: #000;}
+	tbody td,thead th{text-align: center;}
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 物联网中心 <span class="c-gray en">&gt;</span> 设备列表</a>
+<div class="text-c" style="float: right;"> 
+    <form action="" method="get">
+    <input type="text" name="search" id="" placeholder="输入dtuid或fid" style="width:250px" class="input-text"><button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont"></i> 搜索</button>
+    </form>
+  </div></nav>
+<div class="page-container">
+	
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l"><a class="btn btn-primary radius" href="{:U('facility/facility_list')}">全部设备</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="{:U('facility/facility_list?lianji=1')}">正常联机</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="{:U('facility/facility_list?run=1')}">运行中设备</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="{:U('facility/facility_list?shenhe=0')}">未调试设备</a></span 
+	</div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr>
+					<th width="70"><a id='a_fid' name='$sx' href="{:U('facility/fac_listId?fid=fid'.$sx)}">FID</a></th>
+					<th width="180"><a id='a_dtuid' href="{:U('facility/fac_listId?did=dtuid'.$dsx)}">通讯编号</a></th>
+					<th width="90"><a href="#">出厂编号</a></th>
+					<th><a href="#">用户名称</a></th>
+					<th><a href="#">通讯名称</a></th>
+					<th width="90"><a href="#">产品型号</a></th>
+					<th><a href="#">更新日期</a></th>
+					<th width="80"><a href="#">运行状态</a></th>
+					<!--<th width="120"><a href="#">查看</a></th>-->
+					<th width="120"><a href="#">操作</a></th>
+					<th width="120"><a href="#">报表</a></th>
+				</tr>
+			</thead>
+			<tbody style="text-align: center;">
+			<volist name="list" id="vo">
+				<tr>
+					<td><eq name="vo.lianji" value="1"><a href="{:U('facility/detail?fid='.$vo['fid'])}">{$vo.fid}</a><else />{$vo.fid}</eq></td>
+					<td><eq name="vo.lianji" value="1"><a href="{:U('facility/detail?fid='.$vo['fid'])}">{$vo.dtuid}</a><else />{$vo.dtuid}</eq></td>
+					<td>{$vo.product_code}</td>
+					<td>{$vo.userr}&nbsp;<a href="#"></a></td>
+					<td>{$vo.note}</td>
+					<td>{$vo.plcname}</td>
+					<td>{$vo.uptime}</td>
+					<eq name="vo.run_status" value="0">
+					<td style="text-align: center;"><img src="__PUBLIC__/images/facility_zt0.jpg" border="0" width="17" height="16"></td>
+					<else />
+					<td style="text-align: center;"><img src="__PUBLIC__/images/facility_zt1.jpg" border="0" width="17" height="16"></td>
+					</eq>
+					<!-- <td>
+						<a href="#" class="ml-5" onClick="article_add1('运行界面','{:U('facility/facility_zjym?fid='.$vo['fid'])}','10001','600','600')" href="javascript:;" title="运行界面"> <span class="glyphicon glyphicon-th-large" aria-hidden="true"> 运行界面</span></a>
+					
+					</td>-->
+					<td style="line-height:20px;">
+					
+					<!-- <a href="#" class="ml-5" onClick="article_add3('服务工单','{:U('facility/facility_fwgd')}','10001')" href="javascript:;" title="服务工单"><span class="glyphicon glyphicon-book" aria-hidden="true"></span></a> -->
+					<eq name="vo.available" value="1">
+
+					
+					<a href="{:U('facility/add_sb?fid='.$vo['fid'])}" class="ml-5" title="编辑"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+					
+					<a  class="ml-5" href="{:U('facility/tzcj?fid='.$vo['fid'])}" title="停止采集"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
+					<else />
+					<a style="text-decoration:none" class="ml-5" onclick="return confirm('　　　　-----　警  告　-----\n\n此操作会同时删除设备相关的所有数据，\n删除后无法恢复，请慎重操作！\n\n确认要彻底删除此设备吗？\n\n\n　　删除按->确定, 不删除按->取消\n');"  href="{:U('facility/del_facility',array('fid'=>$vo['fid'],'dtuid'=>$vo['dtuid']))}" title="删除"><i class="Hui-iconfont"></i></a>
+
+					 <a style="text-decoration:none" href="{:U('facility/qiyong?fid='.$vo['fid'])}" title="启用"><i class="Hui-iconfont"></i></a>
+					</eq>
+					</td>
+					<td>
+    <a   href="{:U('facility/facility_report?fid='.$vo['fid'])}"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a> 
+             <a   href="{:U('facility/facility_report?fid='.$vo['fid'].'&type=charts')}"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+
+					</td>
+				</tr>
+			</volist>
+			</tbody>
+		</table>
+		<div class="page">{$page}</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+
+// $("#a_fid").click(function () {
+
+
+
+
+// });
+$("#a_dtuid").click(function () {
+    $link= $(this).attr("href");
+
+ if($link=="{:U('facility/facility_list?fid=sx')}"){
+   $(this).attr("href", "{:U('facility/facility_list?fid=jx')}");
+}else {
+  $(this).attr("href", "{:U('facility/facility_list?fid=sx')}");
+
+}
+
+});
+
+
+
+/*资讯-编辑*/
+function article_edit(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+function article_add1(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+function article_add2(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+function article_add3(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+function article_add4(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+
+</script> 

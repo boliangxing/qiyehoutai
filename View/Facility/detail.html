@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>设备详情</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/xhxstyle.css">
+
+</head>
+<body >
+<div class="container">
+	<!-- <div class="header">
+		<div class="logo fl"><a href="#"><img src="__PUBLIC__/images/logo_03.png"></a></div>
+		<div class="head_tit">锅炉燃烧监控终端</div>
+		<div class="pho fr"><a href="javascript:;"><img src="__PUBLIC__/images/pho_03.png"></a>
+			<div class="pho_tc">
+				<p>名称：<span>鑫华新</span></p>
+				<p>锅炉型号：<br><span>WNS2-1.25-Q  </span></p>
+				<button type="button">退出登录</button>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div> -->
+	
+	<div class="content">
+		<!-- 左边 -->
+	
+		<div class="cont_left fl" id="left">
+			<div class="zuo_top">
+				<div class="cont_left_top fl">
+				<h1>累计燃烧时间<br><span>Cumulative burning time</span></h1>
+				<p id="remainSeconds" style="display: none;">590</p>
+				<p ><volist name="parame" id="vo"><eq name='vo.parname' value="累积燃烧时间">{$vo['value_name']|default="127小时"} </eq></volist></p>
+				</div>
+				<div class="cont_left_cen fr">
+					<h1>水位状态<br><span>Water level state</span></h1>
+					<p style="color: #2bb9cd;"><volist name="parame" id="vo"><eq name='vo.parname' value="低水位报警">{$vo['value_name']|default="正常"} </eq></volist></p>
+					<!-- <div class="da" style="width: 100%;height: 3px;background: #2bb9cd;margin-top: 10px;position: relative;">
+						<div class="dian"style="width: 13px;height: 13px;background: #2bb9cd;border-radius: 50%;left: 70%;top: -5px;position: absolute;"></div>
+					</div> -->
+				</div>
+				<!-- <div class="cont_left_bot fr" style="padding-bottom: 0">
+					<h1>循环泵<br><span>Circulating pump</span></h1>
+					<div style="padding: 5px 0;">
+						<div class="fl cir" style="margin-right: 23px;">1</div>
+						<div class="fl cir">2</div>
+						<div class="fr cir" style="color: #ff0000;border-color: #ff0000;">3</div>
+						<div class="clear"></div>
+					</div>
+				</div> -->
+				<div class="clear"></div>
+			</div>
+			<div class="zuo_cen">
+				<div class="gl">
+					<img src="__PUBLIC__/images/yhgl_03.png">
+				</div>
+				<div class="xixi">
+					<p><b class="b1" style="padding-left: 10px;">设备信息</b><b class="b2">异常</b></p>
+				</div>
+				<div class="gldw">
+					<div class="pmain">
+
+						<p class="p1">给水泵出口压力：<span>0</span></p>
+						<p class="p2">给水泵出口压力：<span>0</span></p>
+						<p class="p3">出水流量：<span>0</span></p>
+						<p class="p4">补水流量：<span>0</span></p>
+						<p class="p5">冷凝器排烟温度：<span>_℃</span></p>
+						<p class="p6">节能器进水温度：<span>_℃</span></p>
+						<p class="p7">节能器出水温度：<span>_℃</span></p>
+						<p class="p8">燃烧器状态：<span><volist name="parame" id="vo"><eq name='vo.parname' value="燃烧器故障">{$vo['value_name']} </eq></volist></span></p>
+						<p class="p9">烟气流量：<span>0</span></p>
+						<p class="p10">止回阀：<span>故障</span></p>
+						<p class="p11">烟室温度：<span>_℃</span></p>
+						<p class="p12"><img src="__PUBLIC__/images/shuaxin_03.png"></p>
+						<p class="p13"><img src="__PUBLIC__/images/shuaxin_03.png"></p>
+						<p class="p14"><img src="__PUBLIC__/images/shuaxin_03.png"></p>
+						<p class="p15"><img src="__PUBLIC__/images/h1_03.png"></p>
+						<p class="p16"><img src="__PUBLIC__/images/banzi_03.png"></p>
+						<p class="huo" style="position: absolute;"><img src="__PUBLIC__/images/huo.gif" style="width: 185px;height: 70px;"></p>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+			<!-- 温度检测 -->
+			<div class="wd">
+				<div  class="wdleft fl wd_wd">
+					<h1><button id="tijiao1"></button></h1>
+					
+					<div class="kd">
+					<div id="test"> <input type="hidden" id="yanqi" value="<volist name="parame" id="vo"><eq name='vo.parname' value="烟气温度">{$vo['value']} </eq></volist>"></input>
+					
+					<volist name="parame" id="vo"><eq name='vo.parname' value="烟气温度">{$vo['value']} </eq></volist> </div>
+						<!-- <img src="__PUBLIC__/images/kd_03.png">
+						<div class="zhiz">
+							<img src="__PUBLIC__/images/zhizhen_03.png">
+						</div> -->
+					</div>
+					<span>单位：摄氏度（℃）</span>
+					<p>当前温度<volist name="parame" id="vo"><eq name='vo.parname' value="烟气温度">{$vo['value_name']} </eq></volist></p>
+				</div>
+				<div  class="wdcenter fl wd_wd">
+					<h1>出水温度</h1>
+					<div class="kd">
+					<div id="test1"><input type="hidden" id="dangqian" value="<volist name="parame" id="vo"><eq name='vo.parname' value="出水温度">{$vo['value']} </eq></volist>"></input>
+
+					<volist name="parame" id="vo"><eq name='vo.parname' value="采暖出水">{$vo['value']} </eq></volist></div>
+					<button id="tijiao2"></button>
+						<!-- <img src="__PUBLIC__/images/kd_03.png">
+						<div class="zhiz">
+							<img src="__PUBLIC__/images/zhizhen_03.png">
+						</div> -->
+					</div>
+					<span>单位：摄氏度（℃）</span>
+					<p>当前温度
+
+<volist name="parame" id="vo"><eq name='vo.parname' value="采暖出水">{$vo['value_name']} </eq></volist></p>
+				</div>
+				<div  class="wdright fr wd_wd">
+					<h1>回水温度</h1>
+					<div class="kd">
+					<div id="test2"><input type="hidden" id="huishui" value="<volist name="parame" id="vo"><eq name='vo.parname' value="回水温度">{$vo['value']} </eq></volist>"></input>
+						<button id="tijiao3"></button>
+<volist name="parame" id="vo"><eq name='vo.parname' value="采暖回水">{$vo['value']} </eq></volist></div>
+						<!-- <img src="__PUBLIC__/images/kd_03.png">
+						<div class="zhiz">
+							<img src="__PUBLIC__/images/zhizhen_03.png">
+						</div> -->
+					</div>
+					<span>单位：摄氏度（℃）</span>
+					<p>当前温度<volist name="parame" id="vo"><eq name='vo.parname' value="采暖回水">{$vo['value_name']} </eq></volist></p>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<!-- 右边 -->
+
+		<div class="cont_right fl" id="right">
+			<div class="Table">
+				<div class="Table_title">
+					<h1>鑫华新数据报表(FID:{$info.fid}.{$info.note})<a href="{:U('facility/facility_report?fid='.$info['fid'])}" class="set_btn">报表</a></h1>
+					<div class="clear"></div>
+				</div>
+				<div class="info">
+					<p class="p1">公司名称: <span>{$info.userr}</span></p>
+					<p>使用地址: <span>{$customer.customer_address}</span></p>
+					<p>登录账号: <span>{$customer.clname}</span></p>
+					<p>锅炉型号: <span>{$customer.plcname}</span></p>
+					<p>通讯编号: <span>{$info.dtuid}</span></p>
+				</div>
+			</div>
+			<!-- <div class="Table set">
+				<div class="xx">
+					<p>数据选择</p>
+					<a href="javascript:;">排烟温度</a>
+					<a href="javascript:;">回水温度</a>
+					<a href="javascript:;">出水温度</a>
+					<a href="javascript:;">控制器服务状态</a>
+					<a href="javascript:;">循环泵联锁信号</a>
+					<a href="javascript:;">燃烧器负荷调节</a>
+					<a href="javascript:;">燃烧器启动控制</a>
+					<a href="javascript:;">排烟温度</a>
+					<a href="javascript:;">回水温度</a>
+					<a href="javascript:;">出水温度</a>
+					<a href="javascript:;">控制器服务状态</a>
+					<a href="javascript:;">循环泵联锁信号</a>
+					<a href="javascript:;">燃烧器负荷调节</a>
+					<a href="javascript:;">燃烧器启动控制</a>
+				</div>
+				<div class="tru">
+					<button type="button" class="tru_btn">确定</button>
+					<button type="button" class="for_btn">取消</button>
+				</div>
+			</div> -->
+			<!-- <div class="info">
+				
+			</div> -->
+			<div class="zhex">
+				<div id="main" style="width: 100%;height:500px;"></div>
+				
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	
+</div>
+</body>
+</html>
+<script type="text/javascript" src="__PUBLIC__/js/echarts.common.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.11.0.min.js"></script>
+<script>
+	$(function(){
+		$(".sj tr th:last-child").css("border-right","none");
+		$(".sj tr:last th").css("border-bottom","none");
+		$(".tiaoshu a").click(function(){
+			$(".tiaoshu a").removeClass()
+			$(this).addClass("act")
+		})
+		$(".xx a").click(function(){
+			$(this).toggleClass("act1")
+		})
+		$(".set_btn").click(function(){
+			$(".set").fadeIn(1000)
+		})
+		$(".for_btn").click(function(){
+			$(".set").fadeOut(1000)
+		})
+		$(".tru_btn").click(function(){
+			$(".set").fadeOut(1000)
+		})
+	})
+</script>
+<script>
+	$(document).ready(function(){
+		$(".pho a").click(function(e){
+			e.stopPropagation();
+			$(".pho_tc").fadeIn(1000);
+		});
+		$(document).click(function(){
+			if(!$(".pho_tc").fadeOut(1000)){
+				$(".pho_tc").fadeOut(1000);
+			}
+		});
+	});
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.4.min.js"></script>
+<script src="__PUBLIC__/js/jquery.speedometer.js"></script>
+<script src="__PUBLIC__/js/jquery.jqcanvas-modified.js"></script>
+<script>
+
+$(function(){
+
+    $('#test').speedometer();
+     $('#tijiao1').click(function(){
+    	var $val=$('.yanqi').val();
+    	if ($val<=100) {
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:100,background:"kd_03.png",maximum:100});
+    	}
+    	if ($val>100&&$val<=500) {console.log($val);
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:500,background:"kd500.png",maximum:500});
+    	}
+    	if ($val>500&&$val<=1000) {
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:1000,background:"kd1000.jpg",maximum:1000});
+    	}
+        
+    });
+    $('#test1').speedometer();
+     $('#tijiao2').click(function(){
+    	var $val=$('.huishui').val();
+    	if ($val<=100) {
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:100,background:"kd_03.png",maximum:100});
+    	}
+    	if ($val>100&&$val<=500) {console.log($val);
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:500,background:"kd500.png",maximum:500});
+    	}
+    	if ($val>500&&$val<=1000) {
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:1000,background:"kd1000.jpg",maximum:1000});
+    	}
+        
+    });
+    $('#test2').speedometer();
+     $('#tijiao3').click(function(){
+    	var $val=$('.dangqian').val();
+    	if ($val<=100) {
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:100,background:"kd_03.png",maximum:100});
+    	}
+    	if ($val>100&&$val<=500) {console.log($val);
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:500,background:"kd500.png",maximum:500});
+    	}
+    	if ($val>500&&$val<=1000) {
+    		$('#test').speedometer({ percentage: $val || 0 ,scale:1000,background:"kd1000.jpg",maximum:1000});
+    	}
+        
+    });
+     $('#tijiao1').click();
+
+
+});
+
+</script>
+  <!--   <script type="text/javascript">
+         var timeIndex = 590; //这里是设定的时间
+        var url = "";
+        $(document).ready(function(){
+            var regex = /dateTime=(\d+)/;
+            var src = location.toString();
+            if(src.match(regex)){
+                timeIndex = src.match(regex)[1];
+            }
+            setTime();
+            setInterval(setTime, 1000);
+        });
+        function setTime(){
+        	var day = parseInt((timeIndex / 3600) / 24);
+            var hour = parseInt(timeIndex / 3600);
+            var minutes = parseInt((timeIndex % 3600) / 60);
+            var seconds = parseInt(timeIndex % 60);
+            day = day < 10 ? "0" + day : day;
+            hour = hour < 10 ? "0" + hour : hour;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            $("#divTime").text(day+":"+hour + ":" + minutes + ":" + seconds);
+            timeIndex++;
+            $("#linkTime").attr("href", url + timeIndex);
+        }
+    </script> -->
+
+    <script type="text/javascript">
+                var dom = document.getElementById("main");
+        		var myChart = echarts.init(dom);
+        		var app = {};
+
+        		var data = [];
+        		var now = +new Date(1997, 9, 3);
+        		var oneDay = 24 * 3600 * 1000;
+        		var value = Math.random() * 1000;
+        		for (var i = 0; i < 1000; i++) {
+        		    //data.push(randomData());
+        		}
+        		data = getData();
+        		option = {
+        		    title: {
+        		        text: '实时数据',
+        		        textStyle: {
+        		    　　color: '#bbb'
+        		    　　},
+        		    x: "left",
+                      
+        		    },
+        		    legend: {
+			        	data:['排烟温度','出水温度','回水温度']
+			    	},
+        		    tooltip: {
+        		        trigger: 'axis',
+        		        // formatter: function (params) {
+        		        //     params = params[0];
+        		        //     var date = new Date(params.name);
+        		        //     return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
+        		        // },
+        		        axisPointer: {
+        		            animation: false
+        		        }
+        		    },
+        		    xAxis: [
+        		    　　{
+        		    	type: 'time',
+        		    	axisLabel: {
+        		    　　textStyle: {
+        		    　　color: '#bbb'
+        		    　　}
+        		    　　},
+        		    	splitLine: {
+        		            show: false
+        		        },
+        		        data : data
+        		    　　},
+        		    	
+        		    　　],
+        		    yAxis: {
+        		        type: 'value',
+        	        	axisLabel: {
+        	        　　textStyle: {
+        	        　　color: '#bbb'
+        	        　　}
+        	        　　},
+        		        boundaryGap: [0, '100%'],
+        		        splitLine: {
+        		            show: false
+        		        },
+        		        splitNumber:5
+        		    },
+        		    series: [{
+        		        name: '排烟温度',
+        		        type: 'line',
+        		        showSymbol: false,
+        		        hoverAnimation: false,
+        		        data: data[0],
+        		        
+        		    },{
+        		        name: '出水温度',
+        		        type: 'line',
+        		        showSymbol: false,
+        		        hoverAnimation: false,
+        		        data: data[1],
+        		        
+        		    },{
+        		        name: '回水温度',
+        		        type: 'line',
+        		        showSymbol: false,
+        		        hoverAnimation: false,
+        		        data: data[2],
+        		        
+        		    }]
+        		};
+
+        		app.timeTicket = setInterval(function () {
+
+        		    // for (var i = 0; i < 1; i++) {
+        		    //     data.shift();
+        		    //     data.push(randomData());
+        		    // }
+                    //console.log(getData());
+                    ajax = getData();
+                    // console.log(ajax);
+        		    myChart.setOption({
+        		        series: [{
+        		            data: ajax[0]
+        		        },{
+        		        	data: ajax[1]
+        		        },{
+        		        	data: ajax[2]
+        		        }]
+        		    });
+        		}, 1000*60);;
+
+
+                //测试生成时间用的，可删除
+        		// if (option && typeof option === "object") {
+        		//     var startTime = +new Date();
+        		myChart.setOption(option);
+
+        		function randomData() {
+        		    now = new Date(+now + oneDay);
+        		    value = value + Math.random() * 21 - 10;
+        		    return {
+        		        name: now.toString(),
+        		        value: [
+        		            [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-'),
+        		            Math.round(value)
+        		        ]
+        		    }
+        		}
+
+        		function getData(){
+        			var res = '';
+        			//return 1;
+        			$.ajax({
+        				type: "GET",
+        				url: "{:U('facility/ajax_detail?fid='.$info['fid'])}",
+        				dataType: "json",
+        				async: false ,
+        				success: function(data){
+        					res = data;
+        				}
+        			})
+        			return res;
+        		}
+    </script>
+   
+   
+
+
+   
+
+

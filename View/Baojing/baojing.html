@@ -1,0 +1,109 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>报警记录</title>
+<style type="text/css">
+	.pd-5 span{margin-right: 10px;}
+	.hah input{height: 31px;line-height: 31px;border:1px solid #999;background: #f0f0f0;padding: 0 10px;font-size: 14px;color: #000;}
+	.hah button{height: 33px;line-height: 33px;border:1px solid #999;background: #999;padding: 0 10px;font-size: 14px;color: #000;}
+	.table-sort tbody{text-align: center;}
+	.stop{color: #c20919;}
+	.stop1{color: #0fe56f;}
+</style>
+</head>
+<body>
+
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 报警中心 <span class="c-gray en">&gt;</span> 报警记录</a></nav>
+<div class="page-container">
+	<!-- <div class="text-c"> 日期范围：
+	    <input type="text" onfocus="WdatePicker()" id="logmin" class="input-text Wdate" style="width:120px;">
+	    -
+	    <input type="text" onfocus="WdatePicker()" id="logmax" class="input-text Wdate" style="width:120px;">
+	    <input type="text" name="" id="" placeholder="输入关键字" style="width:250px" class="input-text"><button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont"></i> 搜索</button>
+	  </div> -->
+	<!-- <div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">报警记录</a></span>
+	</div> -->
+
+	<form action="" method="get" id="form2">
+    <div class="text-c"> 日期范围：
+        <input type="text" onfocus="WdatePicker()" value="" id="datemin" name="start_time" class="input-text Wdate" style="width:120px;">
+        -
+        <input type="text" onfocus="WdatePicker()" value="" id="datemax" name="last_time" class="input-text Wdate" style="width:120px;">
+       
+        <button type="submit" class="btn btn-success radius" id="but"><i class="Hui-iconfont">&#xe665;</i> 按时间搜索报警记录</button>
+    </div>
+</form>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="50"><a href="{:U('baojing/baojing?ord=BJID&sx='.$sx)}">BJID</a></th>
+					<th width="120"><a href="{:U('baojing/baojing?ord=bjtime&sx='.$sx)}">首次报警时间</a></th>
+					<th width="62"><a href="{:U('baojing/baojing?ord=cishu&sx='.$sx)}">报警次数</a></th>
+					<th width="120"><a href="{:U('baojing/baojing?ord=uptime&sx='.$sx)}">最后报警时间</a></th>
+					<th><a href="#">用户名称*</a></th>
+				<!-- 	<th width="80"><a href="#">对象编号*</a></th> -->
+					<th><a href="{:U('baojing/baojing?ord=bjnote&sx='.$sx)}">报警描述</a></th>
+					<th width="120"><a href="{:U('baojing/baojing?ord=dtuid&sx='.$sx)}">通讯编号</a></th>
+					<th width="70"><a href="#">短信</a></th>
+					<th width="70"><a href="#">操作</a></th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="list" id="vo">
+				<tr>
+					<td><a href="#">{$vo.bjid}</a></td>
+					<td>{$vo.bjtime|date="Y-m-d H:i:s",###}</td>
+					<td>{$vo.cishu}</td>
+					<td>{$vo.uptime|date="Y-m-d H:i:s",###}</td>
+					<td><a href="#">{$vo.userr}</a></td>
+		<!-- 			<td><a href="#">{$vo.parcode}</a></td> -->
+					<td class="stop">{$vo.bjnote}</td>
+					<td><a href="#">{$vo.dtuid}</a></td>
+					<eq name="vo.ifsend" value="0">
+					<td><span class="stop">×</span></td>
+					<else />
+					<td><span class="stop1">√</span></td>
+					</eq>
+					
+					<td><eq name="vo.is_read" value="1"><a href="javascript:;" class="btn btn-success radius">已读</a><else /><a href="{:U('baojing/baojing_detail?id='.$vo['bjid'])}" class="btn btn-danger radius">设为已读</a></eq>
+
+					</td>
+				</tr>
+			</volist>
+				
+			</tbody>
+
+		</table>
+		<div class="page">{$page}</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> 
+</body>
+</html>

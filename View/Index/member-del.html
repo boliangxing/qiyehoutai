@@ -1,0 +1,334 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加客户</title>
+<style>
+	.fl{float: left;}
+	.clear{clear: both;height: 0;overflow: hidden;}
+	.kh{float: left;width: 35%;}
+	.kh li{font-size: 15px;margin: 10px 0 10px 5%;width: 100%;}
+	.kh li label{display: inline-block;width: 85px;text-align: right;}
+	.kh li input{height: 35px;line-height: 35px;border:1px solid #999;padding: 0 10px;width: 200px;}
+	.kh li input:hover,.kh li input:focus,.kh li select:focus,.kh li select:hover{border-color: #c20919;}
+	.kh li select{width: 222px;height: 37px;line-height: 37px;padding: 0 10px;}
+	#bbt:active {color: rgba(255, 255, 255, 0.4);background-color: #a80d1a;}
+</style>
+<style type="text/css">
+	.pd-5 span{margin-right: 10px;}
+	.hah input{height: 31px;line-height: 31px;border:1px solid #999;background: #f0f0f0;padding: 0 10px;font-size: 14px;color: #000;}
+	.hah button{height: 33px;line-height: 33px;border:1px solid #999;background: #999;padding: 0 10px;font-size: 14px;color: #000;}
+	.table-sort tbody{text-align: center;}
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 客户管理 <span class="c-gray en">&gt;</span> 添加客户</a></nav>
+<div class="page-container">
+<h1 style="width: 23%;text-align: left;font-size: 16px;border-bottom:1px solid #999;height: 30px;line-height: 30px;padding: 10px 0;margin: 0 0 15px 30px;">添加新客户</h1>
+	<ul class="kh">
+		<li>
+			<div>
+				<label for="bt">客户名称：</label>
+				<input type="text" placeholder="必填" id="bt">
+			</div>
+		</li>
+		
+		<li>
+		<div>
+			<label for="bt0">详细地址：</label>
+			<input type="text" placeholder="请输入地址" id="bt0">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt1">登录账户：</label>
+			<input type="text" placeholder="请输入账号" id="bt1">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt2">登录密码：</label>
+			<input type="text" placeholder="请输入密码" id="bt2">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt5">电话号码：</label>
+			<input type="text" placeholder="请输入电话号码" id="bt5">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt12">接受号码：</label>
+			<input type="text" placeholder="请输入手机号" id="bt12">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt11">传真号码：</label>
+			<input type="text" placeholder="请输入传真号码" id="bt11">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt19">注册资金：</label>
+			<input type="text" placeholder="请输入注册资金" id="bt19">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt10">网址：</label>
+			<input type="text" placeholder="请输入网址" id="bt10">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt9">邮箱：</label>
+			<input type="text" placeholder="请输入邮箱" id="bt9">
+			</div>
+		</li>
+	</ul>
+	<ul class="kh">
+		<li>
+			<div>
+			<label>客户类型：</label>
+			<select>
+				<option>主客户</option>
+				<option>使用用户</option>
+			</select>
+			</div>
+		</li>
+		<li>
+		<div>
+			<label>客户类别：</label>
+			<select name="typ" >
+				<option value="1">住宅供暖</option>
+				<option value="2">商场供暖</option>
+				<option value="3">酒店供暖</option>
+				<option value="4">学校供暖</option>
+				<option value="5">写字楼供暖</option>
+				<option value="6">医院供暖</option>
+				<option value="7">酒店用蒸汽</option>
+				<option value="8">泳池恒温</option>
+				<option value="9">桑拿恒温</option>
+				<option value="10">生产工艺加温</option>
+				<option value="12">住宅热水供暖两用</option>
+				<option value="11">住宅供热水</option>
+				<option value="13">酒店供热水</option>
+				<option value="14">酒店热水供暖两用</option>
+				<option value="15">商场供热水</option>
+				<option value="16">商场热水供暖两用</option>
+				<option value="18">学校热水供暖两用</option>
+				<option value="17">学校供热水</option>
+				<option value="19">写字楼供热水</option>
+				<option value="20">写字楼热水供暖两用</option>
+				<option value="21">医院供热水</option>
+				<option value="22">医院热水供暖两用</option>
+				<option value="24">宾馆供暖</option>
+				<option value="23">洗衣房、厨房用蒸汽</option>
+				<option value="25">宾馆供热水</option>
+				<option value="27">员工洗澡用</option>
+				<option value="26">宾馆热水供暖两用</option>
+				<option value="28">其它</option>
+				<option value="29">桑拿中心供暖热水两用</option>
+				<option value="30">企业公司供热水</option>
+				<option value="31">企业公司供暖</option>
+				<option value="32">企业公司热水供暖两用</option>
+				<option value="33">政府单位供暖</option>
+				<option value="35">政府单位热水供暖两用</option>
+				<option value="34">政府单位供热水</option>
+				<option value="36">桑拿中心供暖</option>
+				<option value="37">桑拿中心供热水</option>
+				<option value="38">娱乐场所供暖</option>
+				<option value="39">娱乐场所供热水</option>
+				<option value="40">娱乐场所热水供暖两用</option>
+				<option value="42">医院蒸汽消毒</option>
+				<option value="43">工业生产使用蒸汽</option>
+				<option value="44">学校用蒸汽</option>
+				<option value="46">酒店热水和蒸汽</option>
+				<option value="47">食品加工用蒸汽</option>
+				<option value="48">热水和蒸汽</option>
+		    </select>
+		    </div>
+		</li>
+		<li>
+			<div>
+			<label>登录情况：</label>
+			<select>
+				<option>允许登录</option>
+				<option>禁止登录</option>
+			</select>
+			</div>
+		</li>
+		<li>
+			<div>
+			<label>公司性质：</label>
+			<select name="customer_kind" id="customer_kind">
+                <option value="国有企业">国有企业</option>
+                <option value="其他">其他</option>
+                <option value="未知性质">未知性质</option>
+                <option value="有限责任公司">有限责任公司</option>
+                <option value="私营企业">私营企业</option>
+                <option value="大陆合资经营企业">大陆合资经营企业</option>
+                <option value="外资企业">外资企业</option>
+                <option value="中外合资经营企业">中外合资经营企业</option>
+                <option value="港、澳、台独资企业">港、澳、台独资企业</option>
+              </select>
+			</div>
+		</li>
+		<li>
+			<div>
+			<label>所属行业：</label>
+			<select name="hangyeid" id="hangyeid">
+                <option value="1">房地产行业</option>
+		        <option value="2">政府单位</option>
+		        <option value="3">建筑行业</option>
+		        <option value="4">制造业</option>
+		        <option value="5">酒店行业</option>
+		        <option value="7">宾馆行业</option>
+		        <option value="6">娱乐行业</option>
+		        <option value="8">学校</option>
+		        <option value="9">医院</option>
+		        <option value="11">商场</option>
+		        <option value="10">体育</option>
+		        <option value="12">银行</option>
+		        <option value="13">金融业</option>
+		        <option value="14">其它</option>
+		        <option value="15">其它</option>
+		        <option value="16">工业</option>
+		        <option value="17">写字楼</option>
+		        <option value="18">写字楼</option>
+		      </select>
+			</div>
+		</li>
+		<li>
+			<div>
+			<label>沟通级别：</label>
+			<select name="gtjb" id="gtjb">
+		      <option value="良好" selected="">良好</option>
+		      <option value="很好">很好</option>
+		      <option value="一般">一般</option>
+		      <option value="差">差</option>
+		     </select>
+			</div>
+		</li>
+		<li>
+			<div>
+			<label>区域类型：</label>
+			<select name="quyu" id="quyu">
+		      <option value="国内客户">国内客户</option>
+		      <option value="海外客户">海外客户</option>
+		      </select>
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt7">成立时间：</label>
+			<input type="text" placeholder="选择时间" id="bt7" onclick="SelectDate(this,'yyyy-MM-dd')">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt8">更新时间：</label>
+			<input type="text" placeholder="选择时间" id="bt8">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt18" class="fl">所在城市：</label>
+			<input type="text" placeholder="选择城市" id="bt18" class="fl" style="margin-left: 4px;">
+			<input style="height: 35px;width: 60px;line-height: 35px;border: 1px solid #999;display: inline-block;float: left;padding: 0 5px;margin-left: 5px;">
+			<div class="clear"></div>
+			</div>
+		</li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<div class="contact">
+	<h1 style="width: 23%;text-align: left;font-size: 16px;border-bottom:1px solid #999;height: 30px;line-height: 30px;padding: 10px 0;margin: 0 0 15px 30px;">联系人</h1>
+	<ul class="kh">
+		<li>
+		<div>
+			<label for="bt20">姓名：</label>
+			<input type="text" placeholder="请输入姓名" id="bt20">
+			</div>
+		</li>
+		<li>
+			<div>
+			<label for="bt21">电话：</label>
+			<input type="text" placeholder="请输入电话" id="bt21">
+			</div>
+		</li>
+		<li>
+			<div>
+			<label for="bt22">传真：</label>
+			<input type="text" placeholder="请输入传真" id="bt22">
+			</div>
+		</li>
+		<li>
+			<div>
+			<label for="bt23">QQ号：</label>
+			<input type="text" placeholder="请输入QQ号" id="bt23">
+			</div>
+		</li>
+	</ul>
+	<ul class="kh">
+		<li>
+			<div>
+			<label>性别：</label>
+			<select name="quyu" id="quyu">
+		      <option value="国内客户">男</option>
+		      <option value="海外客户">女</option>
+		      </select>
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt24">手机：</label>
+			<input type="text" placeholder="请输入手机号" id="bt24">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt25">职位：</label>
+			<input type="text" placeholder="请输入职位名称" id="bt25">
+			</div>
+		</li>
+		<li>
+		<div>
+			<label for="bt26">邮箱：</label>
+			<input type="text" placeholder="请输入邮箱" id="bt26">
+			</div>
+		</li>
+	</ul>
+	<div class="clear"></div>
+	<button type="button" style="height:45px; line-height: 45px;width: 100px; background: #5a98de;color: #fff;margin-left: 121px;border-radius: 5px;border:0;font-size: 15px;margin-top:20px;margin-bottom: 20px;" id="bbt">添加客户</button>
+</div>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> 
+</body>
+</html>

@@ -1,0 +1,117 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" href="__PUBLIC__/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/bootstrap.min.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>产品列表</title>
+<style type="text/css">
+	.pd-5 span{margin-right: 10px;}
+	.hah input{height: 31px;line-height: 31px;border:1px solid #999;background: #f0f0f0;padding: 0 10px;font-size: 14px;color: #000;}
+	.hah button{height: 33px;line-height: 33px;border:1px solid #999;background: #999;padding: 0 10px;font-size: 14px;color: #000;}
+	.table-sort tbody{text-align: center;}
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 产品列表</a>
+
+
+
+<div class="text-c" style="float: right;"> 
+	  <form action="" method="post">
+	    <input type="text" name="keyword" id="" placeholder="输入产品型号" style="width:250px" class="input-text"><button  id="" class="btn btn-success" type="submit"><i class="Hui-iconfont"></i> 搜索</button>
+	    </form>
+	  </div></nav>
+<div class="page-container">
+	<div class="page-container">
+	
+
+	  
+	<!-- <div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">产品列表</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">添加产品</a></span>
+	</div> -->
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="60"><a href="{:U('product/product_list?ord=product_id&sx='.$sx)}">编号</a></th>
+					<th width="180"><a href="{:U('product/product_list?ord=product_name&sx='.$sx)}">型号</a></th>
+					<th  width="180"><a href="#">分类</a></th>
+					<th width="120"><a href="#">PLC机型</a></th>
+					<th  width="180"> <a href="{:U('product/product_list?ord=price&sx='.$sx)}">产品价格</a></th>
+					<th  width="180"><a href="{:U('product/product_list?ord=fuel&sx='.$sx)}">使用燃料</a></th>
+					<th width="180"><a href="{:U('product/product_list?ord=appfunc&sx='.$sx)}">应用功能</a></th>
+					<th width="150"><a href="#">状态操作</a></th>
+				</tr>
+			</thead>
+				<tbody>
+				<volist name="list" id="vo">
+					<tr>
+						<td>{$vo.product_id}</td>
+						<td><a href="#">{$vo.product_name}</a></td>
+						<td>{$vo.typename}</td>
+						<td>{$vo.plcname}</td>
+						<td>{$vo.price}</td>
+						<td>{$vo.fuel}</td>
+						<td>{$vo.appfunc}</td>
+						<td>
+						<eq name="vo.available" value="1">
+						<span class="play">正常</span> &nbsp;&nbsp;&nbsp;&nbsp;
+						<else /><span class="play">禁用</span> &nbsp;&nbsp;&nbsp;&nbsp;
+						</eq>
+						<a class="ml-5" href="{:U('Product/del_product?id='.$vo['product_id'])}" title="删除">
+						<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a  class="ml-5"  href="{:U('Product/product_edit?id='.$vo['product_id'])}" title="编辑"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+			<div class="page">{$page}</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> 
+</body>
+</html>
+<script type="text/javascript">
+function article_edit(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+  function article_del(obj,id){
+  layer.confirm('确认要删除吗？',function(index){
+    $(obj).parents("tr").remove();
+    layer.msg('已删除!',1);
+  });
+}
+</script>

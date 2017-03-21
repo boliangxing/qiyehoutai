@@ -1,0 +1,320 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<LINK rel="Bookmark" href="/favicon.ico" >
+<LINK rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title></title>
+<style type="text/css">
+.input-text:hover, .textarea:hover {
+	    border: solid 1px #3bb4f2;
+}
+.main-table td select {
+    border: 1px solid #e2e2e4;
+    border-radius: 3px;
+    padding: 3px 5px;
+}
+.form-line button {
+    background: #5a98de;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 16px;
+    margin-right: 5px;
+}
+.main-head {
+    border-bottom: 1px solid #eff2f7;
+    font-size: 16px;
+    line-height: 40px;
+    padding: 0 15px;
+}
+.bread-nav {
+    background: #fafafa;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: #999;
+}
+.bread-nav li {
+    float: left;
+}
+.bread-nav li a{
+    font-size: 15px;
+}
+.bread-nav i {
+    margin-right: 5px;
+    font-size: 14px;
+}
+.bread-nav:before, .bread-nav:after {
+    content: "";
+    display: block;
+    height: 0;
+    font-size: 0;
+    clear: both;
+    visibility: hidden;
+}
+</style>
+</head>
+<body>
+<section>
+<ul class="bread-nav">
+	<li><a href="#"><i class="icon-home"></i>首页</a> / </li>
+	<li><a href="#">系统设置</a> / </li>
+	<li>&nbsp;<a href="#">面板显示方案</a></li>
+<div class="clear"></div>
+</ul>
+<header class="main-head">以下是已选中的</header>
+	<table class="table table-border table-bordered table-bg table-hover table-sort">
+		<tbody>
+			<thead>
+				<tr>
+					<td>加入</td>
+					<td>代码</td>
+					<td>名称</td>
+					<td>数据类型</td>
+					<td title="0为不显示值, 1为值不变, /10表示除以10 ,arr表示数字文字转换">公式<font color="red">③</font></td>
+					<td title="默认绿色 ,红色R,黄色Y,白色W ,只针对arr">单位<font color="red">④</font></td>
+					<td title="是否在面板上显示">面板分组</td>
+					<td>排序</td>
+					<td>是否报警</td>
+					<td>报警条件<font color="red">⑤</font></td>
+					<td>报警内容</td>
+					
+					<td>删除</td>		
+				</tr>
+			</thead>
+			<tbody class="main-table">
+			<volist name="now_panel" id="now">
+				<tr align="left" class="over">
+					<td width="50">{$i}</td>
+					<td width="50">{$now.parcode}</td>
+					<td><input type="text" name="parname" value="{$now.parname}" data-id="{$now.id}" size="14" class="input-text two"></td>
+					<td>
+						<select name="dbtype"  data-id="{$now.id}" class="input-text two">
+							<option value="switch" <eq name="now.dbtype" value="switch">selected=""</eq> >开关量</option>
+							<option value="simula" <eq name="now.dbtype" value="simula">selected=""</eq> >模拟量</option>
+							</select>
+					</td>
+					<td><input type="text"  data-id="{$now.id}" name="formula" value="{$now.formula}" size="6" class="input-text two"></td>
+					<td><input type="text"  data-id="{$now.id}" name="units" value="{$now.units}" size="20" class="input-text two"></td>
+					<td>
+						<select name="ishow"  data-id="{$now.id}" class="input-text two">
+							<option value="0" <eq name="now.ishow" value="0">selected=""</eq>>不显示</option>
+							<option value="1" <eq name="now.ishow" value="1">selected=""</eq>>参数设置</option>
+							<option value="2" <eq name="now.ishow" value="2">selected=""</eq>>机组状态</option>
+							<option value="3"  <eq name="now.ishow" value="3">selected=""</eq>>操作界面</option>
+						</select>
+					</td>
+					<td><input type="text"  data-id="{$now.id}" name="seq" value="{$now.seq}" size="5" class="input-text two"></td>
+					<td><!-- <input type="checkbox"  data-id="{$now.id}" name="bjzt" value="1"  <eq name="now.bjzt" value="1">checked=""</eq> class="input-text two"> -->
+					<select name="bjzt"  data-id="{$now.id}" class="input-text two">
+							<option value="0" <eq name="now.bjzt" value="0">selected=""</eq>>否</option>
+							<option value="1" <eq name="now.bjzt" value="1">selected=""</eq>>是</option>
+							
+						</select>
+					</td>
+					<td><input type="text"  data-id="{$now.id}" name="bjtj" value="{$now.bjtj}" size="3" class="input-text two"></td>
+					<td><input type="text"  data-id="{$now.id}" name="bjnote" value="{$now.bjnote}" size="18" class="input-text two"></td>
+					
+					<td><a class="btn btn-primary" href="{:U('setting/del_parame?id='.$now['id'])}">删除</a></td>
+				</tr>
+			</volist>
+			</tbody>
+		</tbody>
+
+					<form action="{:U('setting/parame_ajax?plcid='.I('get.plcid'))}" method="post">
+						<tfoot>
+					    <tr style="height: 60px;line-height: 60px;text-align: right;"></tr>
+					    <tr style="border-top: 1px solid #ddd;">
+					      <th style="text-align: left;padding-left: 10px;border-right: 0;">以下是未选中的</th>
+					      <!-- <th style="border-right: 0;"></th>
+					      <th style="border-right: 0;"></th>
+					      <th style="border-right: 0;"></th> -->
+					    </tr>
+					    <!-- <form action="" method="post"> -->
+					    <volist name="diff_panel" id="vo">
+					    <tr align="left" class="over">
+
+							<td width="50"><input type="checkbox" name="parcode[]" class="one" value="{$vo.parcode}" ></input></td>
+							<td width="50">{$vo.parcode}</td>
+							<td><input type="text" name="parname" value="{$vo.parname}" size="14" disabled="true" class="input-text"></td>
+							<td>
+								<select name="dbtype" class="input-text" disabled="true">
+									<option value="switch" <eq name="vo.dbtype" value="switch">selected=""</eq> >开关量</option>
+									<option value="simula" <eq name="vo.dbtype" value="simula">selected=""</eq> >模拟量</option>
+									</select>
+							</td>
+							<td><input type="text" name="formula" disabled="true" value="{$vo.formula}" size="6" class="input-text"></td>
+							<td><input type="text" name="units" disabled="true" value="{$vo.units}" size="20" class="input-text"></td>
+							<td>
+								<select name="ishow" disabled="true" class="input-text">
+									<option value="0" <eq name="vo.ishow" value="0">selected=""</eq>>不显示</option>
+									<option value="1" <eq name="vo.ishow" value="1">selected=""</eq>>参数设置</option>
+									<option value="2" <eq name="vo.ishow" value="2">selected=""</eq>>机组状态</option>
+									<option value="3"  <eq name="vo.ishow" value="3">selected=""</eq>>操作界面</option>
+								</select>
+							</td>
+							<td><input type="text" disabled="true" name="seq" value="{$vo.seq}" size="5" class="input-text "></td>
+							<td><select name="bjzt" disabled="true"  data-id="{$now.id}" class="input-text ">
+							
+							<option value="1" <eq name="now.bjzt" value="1">selected=""</eq>>是</option>
+							<option value="0" <eq name="now.bjzt" value="0">selected=""</eq>>否</option>
+							
+						</select></td>
+							<td><input type="text" disabled="true" name="bjtj" value="{$vo.bjtj}" size="3" class="input-text "></td>
+							<td><input type="text" disabled="true" name="bjnote" value="{$vo.bjnote}" size="18" class="input-text "></td>
+							<input type="hidden" name="planid" value="{$planid}"></input>
+							
+							
+						</tr>
+					  </volist>
+					 <!--  </form> -->
+					  </tfoot>
+					  
+	</table>
+	<br>
+	<div align="right" class="form-line submit">
+		<!-- <button id="selectAll">全选加</button>
+		<button id="unSelect">全不加</button>
+		<button id="reverse">反选加</button>
+		<button id="selectAllup">反选加</button>
+		<button id="selectAlldel">全选删</button> -->
+		<button type="submit">确定添加</button>
+	</div>
+	</form>
+	<div style="padding-left: 35px;">
+		<ol>
+			<li>单位如: 温度℃ ; 压力: Mpa ; 容积: m³</li>
+			<li><font color="red">③</font>公式: <b>0</b> 为不显示值, <b>1</b> 为值不变, <b>/10</b>	表示除以10(值可以定), <b>arr</b>为数组, <b>r</b>四舍五入, <b>f</b>舍零取整, <b>c</b>进一取整</li>
+			<li><font color="red">④</font>单位显示颜色: 默认绿色 ,R红色,Y黄色,W白色,B蓝色	(只针对arr)</li>
+			<li><font color="red">⑤</font>报警条件: 打勾的报警, 后面填写报警的数值, 1或0</li>
+		</ol>
+	</div>
+</section>
+
+<!--_footer 作为公共模版分离出去--> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/messages_zh.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> 
+<!--/_footer /作为公共模版分离出去--> 
+
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	
+	$("#form-admin-add").validate({
+		rules:{
+			adminName:{
+				required:true,
+				minlength:4,
+				maxlength:16
+			},
+			password:{
+				required:true,
+			},
+			password2:{
+				required:true,
+				equalTo: "#password"
+			},
+			sex:{
+				required:true,
+			},
+			phone:{
+				required:true,
+				isPhone:true,
+			},
+			email:{
+				required:true,
+				email:true,
+			},
+			adminRole:{
+				required:true,
+			},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$(form).ajaxSubmit();
+			var index = parent.layer.getFrameIndex(window.name);
+			parent.$('.btn-refresh').click();
+			parent.layer.close(index);
+		}
+	});
+});
+
+ $(".two").change(function(){
+        var id=$(this).attr("data-id");
+        var val=$(this).val();
+        var name=$(this).attr('name'); 
+        var data={id:id,val:val,name:name};
+        var url = "{:U('setting/plan_ajax')}";
+            $.post(url,data).success(function(data) {
+                //var data = JSON.parse(data);
+                if (data==1) {
+                    layer.msg('成功',{icon: 6,time:1000});
+                } else {
+                    layer.msg('失败',{icon: 5,time:1000});
+                }
+            });
+
+
+ 
+    });
+
+ // $(".one").change(function(){
+ //        var id=I('get.planid');
+ //        var val=$(this).val();
+ //        var name=$(this).attr('name'); 
+ //        var data={planid:id,val:val,name:name};
+ //        var url = "{:U('setting/panel_ajax')}";
+ //            $.post(url,data).success(function(data) {
+ //                //var data = JSON.parse(data);
+ //                if (data==1) {
+ //                    layer.msg('成功',{icon: 6,time:1000});
+ //                } else {
+ //                    layer.msg('失败',{icon: 5,time:1000});
+ //                }
+ //            });
+
+
+ 
+ //    });
+
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>创建工单</title>
+<style type="text/css">
+.fl{float: left;}
+.clear{clear: both;height: 0;overflow: hidden;}
+.xz{margin: 5px 0;}
+    .xz select{height: 37px;line-height: 37px;width: 262px;border:1px solid #ddd;}
+    .xz label{height: 35px;line-height: 35px;display: inline-block;width: 90px;text-align: right;}
+    .xz input{height: 35px;line-height: 35px;width: 240px;border:1px solid #ddd;padding: 0 10px;}
+    .xz textarea{height: 50px;line-height: 1.5;width: 500px;border:1px solid #ddd;padding:10px;}
+    .xz button{height: 40px;line-height: 40px;width: 520px;border:0;padding: 0 10px;background: #5a98de;color: #fff;margin-left: 90px;border-radius: 5px;}
+    .xz input:focus,.xz input:hover,.xz select:hover,.xz textarea:focus,.xz textarea:hover{border:1px solid #ddd;}
+    .xz button:active {color: rgba(255, 255, 255, 0.6);background-color: #aa0c1a;}
+    .xz{width: 50%;float: left;}
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 服务工单 <span class="c-gray en">&gt;</span> 创建新工单 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:9px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+    <div class="xz">
+        <label for="xh2" class="fl">存档编号：</label>
+        <input type="text" placeholder="存档编号" class="fl" id="xh2">
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label class="fl">工单编号：</label>
+        <input type="text" placeholder="自动生成" class="fl">
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label for="typeid" class="fl">用户名称：</label>
+        <select name="typeid" id="typeid" class="fl">
+            <option value="4">义乌华美达之江大酒店</option>
+            <option value="15">厦门同力节能科技有限公司</option>
+            <option value="17">安吉沪安生态旅游有限公司</option>
+            <option value="5">杭州冠洋泳池设备有限公司</option>
+            <option value="6">杭州华泰空调设备有限公司</option>
+            <option value="16">杭州上城区近江小区建设工程指挥部</option>
+            <option value="8">日泰鞋业有限公司</option>
+        </select>
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label for="plc" class="fl">服务方式：</label>
+        <select name="nature">
+            <option value="1564">用户自理</option>
+            <option value="117">保内免费</option>
+            <option value="119">保外收费</option>
+            <option value="121">维保期内</option>
+            <option value="118">保内收费</option>
+            <option value="120">保外免费</option>
+    </select>
+      <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label for="plcid" class="fl">服务方式：</label>
+        <select name="manner">
+            <option value="1559">EMS邮寄</option>
+            <option value="1563">保养函告</option>
+            <option value="1565">传真</option>
+            <option value="1566">快递</option>
+            <option value="1567">电子邮件</option>
+            <option value="1568">短信</option>
+            <option value="101">上门服务</option>
+            <option value="103">MCS巡访服务</option>
+            <option value="102">电话服务</option>
+            <option value="104">技术咨询解答</option>
+    </select>
+      <div class="clear"></div>
+    </div>
+    
+    <div class="xz">
+        <label for="xh" class="fl">服务缘由：</label>
+        <input type="text" placeholder="请输入服务缘由" class="fl" id="xh">
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label for="jg" class="fl">创建日期：</label>
+        <input type="text" placeholder="请输入创建日期" class="fl" id="jg">
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label for="rl" class="fl">费用清单：</label>
+        <input type="text" placeholder="请输入服务费用清单" class="fl" id="rl">
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label class="fl">用户确认：</label>
+        <input type="text" placeholder="" class="fl" >
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label for="gn" class="fl">联系方式：</label>
+        <input type="text" placeholder="请输入附加联系方式" class="fl" id="gn">
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label class="fl">附件：</label>
+        <input type="text" placeholder="请上传产品图片" class="fl">
+        <div class="fl">
+            <label for="sc" style="width: 40px;height: 37px;line-height: 37px;background: #5a98de;color: #fff;text-align: center;">上传</label>
+            <input type="file" id="sc" style="display: none;">
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label class="fl">出厂编号：</label>
+        <input type="text" placeholder="请输入设备出厂编号" class="fl">
+        <div class="fl">
+            <label for="sc" style="width: 40px;height: 37px;line-height: 37px;background: #5a98de;color: #fff;text-align: center;">上传</label>
+            <input type="file" id="sc" style="display: none;">
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label for="ms" class="fl">服务描述：</label>
+        <textarea placeholder="请输入服务内容描述" class="fl" id="ms"></textarea>
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label for="ms" class="fl">备注：</label>
+        <textarea placeholder="" class="fl" id="ms1"></textarea>
+        <div class="clear"></div>
+    </div>
+   
+    <div class="xz">
+        <label class="fl">服务日期：</label>
+        <input type="text" placeholder="" class="fl">
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label class="fl">服务类别：</label>
+        <select name="category">
+                <option value="1560">函告</option>
+                <option value="1561">来函</option>
+                <option value="1562">保养通告</option>
+                <option value="1575">发票</option>
+                <option value="1576">维保洽谈</option>
+                <option value="105">维修</option>
+                <option value="106">回访</option>
+                <option value="107">保养</option>
+                <option value="108">指导安装</option>
+                <option value="109">调试</option>
+                <option value="110">质保期满检测</option>
+                <option value="111">MCS设备诊断</option>
+                <option value="112">满意度调查</option>
+                <option value="113">技术咨询解答</option>
+                <option value="114">签维保</option>
+                <option value="115">能效测试</option>
+                <option value="116">配件采购</option>
+                <option value="128">节能诊断</option>
+        </select>
+      <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label class="fl">服务满意度：</label>
+        <select name="satisfaction">
+            <option value="129">未调查</option>
+            <option value="130">无需调查</option>
+            <option value="1518">10分满分</option>
+            <option value="1517">9分</option>
+            <option value="1516">8分</option>
+            <option value="1515">7分</option>
+            <option value="1514">6分</option>
+            <option value="1513">5分</option>
+            <option value="1512">4分</option>
+            <option value="1511">3分</option>
+            <option value="1510">2分</option>
+            <option value="1509">1分</option>
+            <option value="1508">0分</option>
+            <option value="124">满意</option>
+            <option value="1506">非常满意</option>
+            <option value="123">不满意</option>
+            <option value="1502">对服务人员技术水平不满意</option>
+            <option value="122">对服务质量满意</option>
+            <option value="125">对服务人员技术水平满意</option>
+            <option value="126">对服务质量非常满意</option>
+            <option value="1500">对服务态度不满意</option>
+            <option value="1501">对服务质量不满意</option>
+            <option value="1505">对服务人员技术水平非常满意</option>
+            <option value="1504">对服务态度非常满意</option>
+            <option value="1503">对产品质量不满意</option>
+            <option value="1507">对产品质量非常满意</option>
+    </select>
+      <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label  class="fl">服务人员：</label>
+        <input type="text" placeholder="" class="fl" >
+        <input type="text" placeholder="" class="fl"  style="width: 5%;">
+        <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label class="fl">活动状态：</label>
+        <select name="iStatus" id="iStatus">
+            <option value="161">未处理</option>
+            <option value="162">处理中</option>
+            <option value="163">处理完毕</option>
+        </select>
+      <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <label class="fl">关闭工单：</label>
+        <select>
+            <option value="161">关闭</option>
+            <option value="162">开启</option>
+            
+        </select>
+      <div class="clear"></div>
+    </div>
+    <div class="xz">
+        <button type="button">提交保存</button>
+    </div>
+</div>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> 
+</body>
+</html>

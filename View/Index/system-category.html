@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]--><title>产品分类</title>
+<style type="text/css">
+  .pd-5 span{margin-right: 10px;}
+  .hah input{height: 31px;line-height: 31px;border:1px solid #ddd;background: #f0f0f0;padding: 0 10px;color: #000;}
+  .hah button{height: 33px;line-height: 33px;border:1px solid #ddd;background: #ddd;padding: 0 10px;color: #000;}
+  tbody{text-align: center;border-left: 1px solid #ddd;border-top: 1px solid #ddd;}
+  td{text-align: center;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px;border-top: 1px solid #ddd;}
+  td input{padding: 5px;border:1px solid #fff;text-align: center;}
+  td button{padding: 5px 10px;border:0;text-align: center;background: none;}
+  td input:hover,td input:focus{border-color: #ddd;}
+  td a{color: #c20919}
+  tr th{text-align: center;padding: 8px 0;border-right: 1px solid #ddd; }
+  .bbt:hover{text-decoration: none;color: #555;}
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品管理 <span class="c-gray en">&gt;</span> 产品分类</a></nav>
+<div class="page-container">
+  <div class="text-c"> 日期范围：
+    <input type="text" onfocus="WdatePicker()" id="logmin" class="input-text Wdate" style="width:120px;">
+    -
+    <input type="text" onfocus="WdatePicker()" id="logmax" class="input-text Wdate" style="width:120px;">
+    <input type="text" name="" id="" placeholder="输入关键字" style="width:250px" class="input-text"><button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont"></i> 搜索</button>
+  </div>
+  <div class="cl pd-5 bg-1 bk-gray mt-20">
+
+    <span class="l">添加城市</span>
+    <span class="l"><input type="text" placeholder="请输入城市" style="border: 1px solid #ddd"></span>
+    <span class="l">到</span>
+     <span class="l">
+     <select name="tid" onchange="dingwei(this.value)">
+				<option value="0" selected="">--请选择省份或国家--</option>
+				<option value="0" selected="">添加为省份或国家</option>
+								<option value="9" selected="">陕西省</option>
+								<option value="10">浙江省</option>
+								<option value="8">山西省</option>
+								<option value="1">内蒙古</option>
+								<option value="2">辽宁省</option>
+								<option value="3">宁夏自治区</option>
+								<option value="4">青海省</option>
+								<option value="5">北京市</option>
+								<option value="6">天津市</option>
+								<option value="7">甘肃省</option>
+								<option value="12">江苏省</option>
+								<option value="13">新疆维吾尔自治区</option>
+								<option value="14">山东省</option>
+								<option value="15">上海市</option>
+								<option value="16">四川省</option>
+								<option value="17">江西省</option>
+								<option value="18">河北省</option>
+								<option value="19">黑龙江省</option>
+								<option value="20">福建省</option>
+								<option value="21">湖南省</option>
+								<option value="22">重庆市</option>
+								<option value="24">台湾省</option>
+								<option value="25">吉林省</option>
+								<option value="27">安徽省</option>
+								<option value="29">河南省</option>
+								<option value="32">湖北省</option>
+								<option value="34">广东省</option>
+								<option value="36">贵州省</option>
+								<option value="37">海南省</option>
+								<option value="40">云南省</option>
+								<option value="42">广西壮族自治区</option>
+								<option value="43">西藏自治区</option>
+								<option value="45">澳门特别行政区</option>
+								<option value="47">香港特别行政区</option>
+								</select>
+     </span>
+     <span class="l"><a href="#" class="bbt">确定</a></span>
+  </div>
+<div>
+<table class="datalist" cellspacing="0" cellpadding="2" width="666" border="0">
+  <tbody>
+  <tr class="header bg-1" align="center">
+    <th>ID</th>
+    <th>名称</th>
+    <th>排序</th>
+    <th>修改</th>
+    <th>删除</th>
+  </tr>
+  <tr bgcolor="#ffffff">
+    <td>1</td>
+    <td><input type="text" name="typename" value="写字楼供暖"></td>
+    <td><input type="text" name="xuhao" value="5" size="6"></td>
+    <td><button>确定</button></td>
+    <td><span><a href="#" class="ml-5" onclick="article_del(this,'10001')" href="javascript:;" title="删除">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></span></td>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</div>
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> 
+</body>
+</html>
+<script type="text/javascript">
+
+  function article_del(obj,id){
+  layer.confirm('确认要删除吗？',function(index){
+    $(obj).parents("tr").remove();
+    layer.msg('已删除!',1);
+  });
+}
+</script>

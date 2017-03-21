@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="__PUBLIC__/static/plug/echarts.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/bootstrap.min.css">
+</head>
+<body>
+<style type="text/css">
+    .pd-5 span{margin-right: 10px;}
+    .hah input{height: 31px;line-height: 31px;border:1px solid #999;background: #f0f0f0;padding: 0 10px;font-size: 14px;color: #000;}
+    .hah button{height: 31px;border:1px solid #999;background: #999;padding: 0 10px;font-size: 14px;color: #000;}
+    tbody td,thead th{text-align: center;}
+</style>
+
+<nav class="breadcrumb"><i class="Hui-iconfont"></i> 首页 <span class="c-gray en">&gt;</span> 物联网中心 <span class="c-gray en">&gt;</span> 设备列表</nav>
+<div class="page-container">
+    <div class="cl pd-5 bg-1 bk-gray mt-20">
+            <span class="l"><a class="btn btn-primary radius" href="{:U('facility/facility_report?fid='.$fid)}">表格</a></span>
+            <span class="l"><a class="btn btn-primary radius" href="{:U('facility/facility_report?fid='.$fid.'&type=charts')}">折线图</a></span>
+            <!-- <div class="l hah" style="margin-left: 30px;"><input type="text" placeholder="请输入关键字"><button type="button">GO</button></div> -->
+    </div>
+
+    <?php if($type!='charts'){ ?>
+    <table class="table table-border table-bordered table-bg table-hover table-sort" cellspacing="0" cellpadding="2" width="666" border="0">
+      <tbody>
+      <tr class="header bg-1" align="center">
+        <th>采集时间</th>
+        <?php foreach($facility_date[0]['info'] as $val){ ?>
+        <th><?php echo $val['name']; ?><?php //echo $val['parcode']; ?></th>
+        <?php } ?>
+      </tr>
+      <?php foreach($facility_date as $val){ ?>
+      <tr align="center" bgcolor="#ffffff">
+        <td><?php echo $val['uptime'] ?></td>
+        <?php foreach($val['info'] as $val){ ?>
+        <td><?php echo $val['true_value'] ?></td>
+        <?php } ?>
+      </tr>
+      <?php } ?>
+      </tbody>
+    </table>
+    <?php } ?>
+
+
+    <?php if($type=='charts'){ ?>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 100%;height:600px;"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            // 指定图表的配置项和数据
+            var option = option = {
+        title: {
+            text: ''
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+             /* data:['介质压力','超压信号','采暖保护温度','采暖出水','回差','远控信号','介质温度','转换目标温度','超温信号','采暖回水','回差','燃烧状态','烟气温度','水流信号','介质保护压力','回差','故障输出','介质保护温度','燃烧开关','系统开关','回差','控制目标'] */
+             data:[<?php foreach($facility_charts[0]['info'] as $val){ echo "'".$val['name']."',"; } ?>]
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: [<?php foreach($facility_charts as $val){echo "'".$val['uptime']."',"; }?>]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [      
+            <?php foreach($facility_charts[0]['info'] as $key=>$val){ ?>
+                {
+                    name : '<?php echo $val['name'] ?>',
+                    type : 'line',
+                    stack : '总量',
+                    data : [<?php foreach($facility_charts as $val){ echo intval($val['info'][$key]['true_value']).','; } ?>]
+                },
+            <?php } ?>
+             
+        ]
+    };
+
+
+            // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    </script>
+    <?php } ?>
+</div>
+</body>
+</html>

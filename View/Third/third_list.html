@@ -1,0 +1,103 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/bootstrap.min.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>全部用户</title>
+<style type="text/css">
+	.pd-5 span{margin-right: 10px;}
+	.hah input{height: 31px;line-height: 31px;border:1px solid #999;background: #f0f0f0;padding: 0 10px;color: #000;}
+	.hah button{height: 33px;line-height: 33px;border:1px solid #999;background: #999;padding: 0 10px;color: #000;}
+	.table-sort tbody{text-align: center;}
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 第三方平台 <span class="c-gray en">&gt;</span> 用户列表</a>
+
+<div class="text-c" style="float: right;"> 
+	<form action="" method="GET">
+	  <input type="text" name="keywords" id="" placeholder="输入关键字" style="width:250px" class="input-text"><button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont"></i> 搜索</button>
+	  </form>
+	</div></nav>
+<div class="page-container">
+	
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l"><a class="btn btn-primary radius" href="{:U('third/third_list')}">全部用户</a></span>
+<!-- 		<span class="l"><a class="btn btn-primary radius" href="javascript:;">我创建的客户</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">我部门客户</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">我服务的客户</a></span> -->
+		<span class="l"><a class="btn btn-primary radius" href="{:U('third/third_add')}">添加新用户</a></span>
+	</div>
+	<div>
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th><a href="#">编号</a></th>
+					<th><a href="#">用户名称</a></th>
+					<th><a href="#">登录帐号</a></th>
+					<th><a href="#">登录密码</a></th>
+					<th><a href="#">最后登录</a></th>
+					<th><a href="#">操作</a></th>
+				</tr>
+			</thead>
+		<tbody>
+			<volist name="list" id="vo">
+			<tr>
+			    <td>{$vo.tid}</td>
+			    <td><a href="#">{$vo.tname}</a></td>
+			    <td>{$vo.tlogin}</td>
+			    <td>{$vo.tpass}</td>
+			    <eq name="vo.cltime" value="0"><td></td><else /><td>{$vo.time|default=''|date="Y-m-d H:i",###}</td></eq>
+			    <td><a href="{:U('third/third_add?id='.$vo['tid'])}" class="ml-5" title="编辑"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+			</tr>
+			</volist>
+	
+		</tbody>
+	</table>
+	<div class="page">{$page}</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> 
+</body>
+</html>
+<script type="text/javascript">
+function article_edit(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+  function article_del(obj,id){
+  layer.confirm('确认要删除吗？',function(index){
+    $(obj).parents("tr").remove();
+    layer.msg('已删除!',1);
+  });
+}
+</script>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>设备详情1004</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/xhxstyle.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/plan/1004/plan.css">
+<script type="text/javascript" src="__PUBLIC__/js/echarts.common.min.js"></script>
+
+<style>
+body {margin:0; padding:0; color:#2bb9cd; background-color: #000;background-image:url(__PUBLIC__/images/bg_01.png); } 
+body,td,th,div,p{   margin:0; padding:0;color: #2bb9cd; font-family:'微软雅黑'; }
+
+#container{margin:0 auto;padding:0;width:1540px;height:1000px;overflow:hidden; }
+
+.fl {float:left;}
+.fr {float:right;}
+.clear{ clear:both}
+.H300 {height:260px;}
+.H330 { height:330px; }
+.H350 { height:350px; }
+
+.boxs {width:100%; overflow:hidden;}
+.boxhead {
+    width:100%; height:50px;
+    background-color:#0a2543; 
+    border-top-left-radius: 10px; 
+    border-top-right-radius:10px;
+    border-bottom-right-radius: 0; 
+    border-bottom-left-radius:0;
+} 
+.boxhead p {padding-left:25px;line-height:48px; font-size: 20px;  color:#e4e9f7;}
+
+
+.boxcon {border:1px solid #0a2543; overflow:hidden; text-align: left; }
+
+
+#head {width:100%;height:110px;overflow:hidden; }
+
+    .face {float:left; padding:15px;width:150px; text-align:center}
+    .weather {float:left;padding-left:50px; width:600px;height:110px; }         
+    .tianqi_ico {float:left;padding:15px; }
+    .tianqi {float:left; width:180px;font-size:30px;padding: 15px;}
+    .riqi {float:left;  padding-top:50px;font-size:30px;}   
+    .subtitle{float:right; width:35%;padding:5px;font-size:22px;    line-height: 100px;text-align: right; }
+
+
+
+#main{width:100%;overflow:auto;} 
+
+.left {float:left;width:970px;}
+
+    .guolutu {
+        margin:0 auto; width:970px; height: 530px; background:#000;
+        background-image:url(__PUBLIC__/plan/1004/glbg.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        border-radius:10px;
+        }
+
+
+    .biao_baojing {margin:10px auto; width:970px; height: 400px; }
+
+        .biao_con {float:left; width:629px; height:310px; }
+        .biao_bg {width:183px; margin-top:10px; margin-left:17px;height:218px;background-color: #1e1e1f;border-radius: 10px; }
+
+        .test { margin: 0 auto; }
+
+        .biao h1{padding-top:10px; text-align: center; font-size:36px;color:#fff; line-height:40px;}
+        .biao h1 span {padding-left:15px;  font-size:16px;color:#fff; line-height:40px;}
+        .biao p { font-size:16px;color:#fff; line-height:20px;text-align: center;}
+
+
+
+        .baojing {float:right; width:330px; height: 310px;}
+
+        .baojing_list{width:90%; margin: 5px auto; }
+        .baojing_list li {line-height:1.5; }
+
+        .baojing_list li.bjzt_0{color:#808080; }
+        .baojing_list li.bjzt_1{color:#30a030; }
+        .baojing_list li.bjzt_2{color:#3dd4e2; }
+        .baojing_list li.bjzt_3{color:#fe0000; } 
+
+.right{float:right; width:550px;overflow:auto;}
+
+.userinfo {padding:10px;font-size:20px;line-height:32px; }
+.userinfo p{color:#a0a0a0;  }
+
+.quxian { height:390px; text-align: center;padding-top:10px;overflow: hidden; }
+.baobiao {margin-top:10px;}
+
+</style>
+
+
+</head>
+<body> 
+
+
+<div id="container">
+<div id="head">    
+        <div class="face"><img src="__PUBLIC__/images/user.png" width="70" height="70" /></div>
+        <div class="weather"> 
+            <div class="tianqi_ico"><img src="__PUBLIC__/images/snowfall.png" width="70" height="70" alt="tianqi" /></div>       
+            <div class="tianqi">                
+                <p>保定市</p>
+                <p>-2~16℃</p>
+            </div>        
+            <div class="riqi"><?php 
+            echo date('Y-m-d'); 
+            //获取中文星期几：
+            $weekarray=array("日","一","二","三","四","五","六");
+            //先定义一个数组
+            echo "  星期".$weekarray[date("w")]; 
+        ?></div>
+        
+        </div>
+        
+        <div class="subtitle"><h2>学好弟子规,做好中国人!</h1></div>
+        <div class="clear"></div>
+    </div>
+ 
+    <div class="clear"></div>
+ 
+    <div class="main" id="app"> 
+        <div class="left">             
+            <div class="guolutu">
+ 
+                <div class="parame">
+
+                    <div class="code_x1000" title="放大扩展按钮">
+                        <a href="?"><img src="__PUBLIC__/images/kuozhan.png"></a>
+                    </div>
+                    <div class="code_x1001" title="取暖出水">
+                        <h1>取暖出水</h1>   
+                    </div>
+                    <div class="code_x1002" title="取暖回水">
+                        <h1>取暖回水</h1>   
+                    </div>
+    <div class="" title="更新时间" style="position: absolute;left: 670px;top: 475px;">
+                        <h1>更新时间:{{uptime}}</h1>   
+                    </div>
+
+                    
+                       <?php
+for($i=0;$i<=28;$i++){
+  ?>
+                        <div class="code_{{parcode<?php echo $i ?>}}" title="{{parname<?php echo $i ?>}}">
+                            <h1>{{parname<?php echo $i ?>}}</h1> 
+                            <h2>{{value<?php echo $i ?>}}</h2> 
+                            <p><span class="parcolor_{{color<?php echo $i ?>}}">{{value_name<?php echo $i ?>}}</span></p>
+                        </div>
+   <?php } ?>
+
+<volist name="parame" id="vo">
+
+                        <eq name='vo.parcode' value="k200">
+                        <?php  if ($vo['value']==1){ ?>  
+                        <div class="huo" title="火焰"><img src="__PUBLIC__/images/huo.gif"></div>
+                        <div class="x_{$vo.parcode} fengshan" title="风扇"><img src="__PUBLIC__/images/fengshan.gif"></div>
+                        <?php }else{ ?> 
+                        <div class="bj_{$vo.parcode} fengshan" title="报警"><img src="__PUBLIC__/images/red-llight.png"></div>
+                        <?php } ?>                    
+                        </eq>  
+
+                        <eq name='vo.parcode' value="k403">
+                        <?php  if ($vo['value']<2){ ?>   
+                        <div class="x_{$vo.parcode} fengshan" title="主循环泵风扇"><img src="__PUBLIC__/images/fengshan.gif"></div>
+                        <?php } ?>                  
+                        </eq>  
+
+                        <eq name='vo.parcode' value="k205">
+                        <?php  if ($vo['value']==1){ ?>   
+                        <div class="x_{$vo.parcode} fengshan" title="备循环泵风扇"><img src="__PUBLIC__/images/fengshan.gif"></div>
+                        <?php } ?>                  
+                        </eq> 
+
+                        <eq name='vo.parcode' value="k380">
+                        <?php  if ($vo['value']<2){ ?>   
+                        <div class="x_{$vo.parcode}" title="低水位报警"><img  src="__PUBLIC__/images/red-llight.png" style="position: relative;top:80px;left:-120px"></div>
+                        <?php } ?>                  
+                        </eq>       
+
+
+                        <eq name='vo.parcode' value="k384">
+                        <?php  if ($vo['value']<2){ ?>   
+                        <div class="x_{$vo.parcode}" title="出水温度高报警"><img src="__PUBLIC__/images/red-llight.png" style="position: relative;top:80px;left:80px"></div>
+                        <?php } ?>                  
+                        </eq>      
+
+
+
+                    </volist>
+
+                </div>
+
+
+            </div>            
+            <div class="biao_baojing">  
+         
+                <div class="biao_con">          
+                        <div class="boxs"> 
+                            <div class="boxhead"><p>温度信息</p></div>
+                            <div class="boxcon H300"> 
+
+                            <div class="fl biao_bg">
+                               
+                                   
+                                        <div  class="biao">
+                                            <h1>{{value1}}<span>℃</span></h1>
+
+                                            <button id="tijiao1" type="button" style="display: none"></button>
+                                            <input type="hidden" id="yanqi" value="99"> 
+
+                                            <div class="kd">
+                                                <div class="test" id="test">{{value1}}</div>   
+                                            </div>                                  
+                                            <p>当前排烟温度</p>
+                                        </div>
+                                 
+                                </div>
+
+
+                                <div class="fl biao_bg">
+                               
+                                        <div  class="biao">
+                                            <h1>{{value2}}<span>℃</span></h1>
+
+                                            <button id="tijiao2" type="button" style="display: none"></button>
+                                            <input type="hidden" id="chushui" value="99"> 
+ 
+                                            <div class="kd">
+                                                <div class="test" id="test1">{{value2}}</div>  
+                                            </div>                                  
+                                            <p>当前出水温度</p>
+                                        </div>
+                                     
+                                </div>
+ 
+ 
+
+
+                                <div class="fl biao_bg">
+                                    <volist name="parame" id="vo">
+                                    <eq name='vo.parcode' value="d23">
+                                        <div  class="biao">
+                                            <h1>{{value3}}<span>℃</span></h1>
+
+                                            <button id="tijiao3" type="button" style="display: none"></button>
+                                            <input type="hidden" id="huishui" value="99"></input>
+
+                                            <div class="kd">
+                                                <div class="test" id="test2">{{value3}}</div>  
+                                            </div>                                  
+                                            <p>当前回水温度</p>
+                                        </div>
+                                    </eq>                                   
+                                    </volist>
+                                </div>
+
+
+ 
+
+                            </div>  
+                        </div>       
+                </div>     
+     
+       <div class="baojing">                    
+                     
+
+                        <div class="boxs"> 
+                            <div class="boxhead"><p>报警信息</p></div>
+                            <div class="boxcon H300">   
+                                <ul class="baojing_list">
+            <volist name="listss" id="vos">
+                                    
+                   <eq name='vos.is_read' value="1">
+                                    <li class="bjzt_1">{$vos.uptime|date="m-d H:i",###} {$vos.bjnote}  </li>
+                                   
+                                  
+                                   </eq>
+                                  <eq name='vos.is_read' value="0">
+                                    <li class="bjzt_0">{$vos.uptime|date="m-d H:i",###} {$vos.bjnote}  </li>
+                                   
+                                  
+                                   </eq>
+
+                                 
+
+  </volist>
+                                 </ul>
+                            </div>                                         
+                         </div>  
+                           
+                </div>
+                
+            </div>
+        </div>
+        <div class="right"> 
+                 
+                <div class="fac_info">                 
+                        <div class="boxs"> 
+                            <div class="boxhead"><p>设备信息</p></div>
+                            <div class="boxcon H350">  
+                                <div class="userinfo"> 
+                                    <p>用户名称: <span>{$info.userr}</span></p>                      
+                                    <p>安装地址: <span>{$customer.customer_address}</span></p>                      
+                                    <p>联系电话: <span>{$customer.customer_tel}</span></p>               
+                                    <p>联系人员: 曹经理</p> 
+                                    <hr/>  
+                                    <p>产品型号: {$customer.plcname}</p>                      
+                                    <p>出厂编号: xhx28092</p>                      
+                                    <p>备注名称: <span>{$info.note}</span></p>   
+                                    <p>通讯编号: <span>{$info.dtuid}</span></p>  
+                                </div>
+ 
+                            </div>  
+                                                         
+                         </div>          
+                </div>
+ 
+
+                <div class="baobiao">                    
+        
+                        <div class="boxs"> 
+                            <div class="boxhead"><p class="fl">温度曲线图</p><span class="fr"><a href="{:U('facility/facility_report?fid='.$info['fid'])}" class="fr set_btn">报表</a></span></div> 
+                            <div class="boxcon quxian">
+                             <img src="__PUBLIC__/images/baobiao.png" width="520" height="400" />
+                             </div>                                         
+                        </div>          
+                </div>
+
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <div class="clear"></div>
+
+</div>
+
+
+
+
+
+
+<!-- 
+
+                 <div class="otherdata">
+                        <volist name="parame" id="vo">
+                            <gt name='vo.ishow' value="1">  
+                                <p class="x_{$vo.parcode}">
+                                {$vo.parcode}
+                                {$vo.parname}   
+                                {$vo.value} 
+                                <span class="parcolor_{$vo.color}">{$vo['value_name']|default="*"}</span>
+                                </p>     
+                            </gt>
+                        </volist>
+                    </div>
+
+ -->
+
+
+         
+ 
+</body>
+</html>
+
+<script src="http://xhx.71.hk/Public/js/vue-resource.js"></script>
+
+<script  src="http://static.runoob.com/assets/vue/1.0.11/vue.min.js
+"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.4.min.js"></script>
+<script src="__PUBLIC__/js/jquery.speedometer.js"></script>
+<script src="__PUBLIC__/js/jquery.jqcanvas-modified.js"></script>
+<script>
+
+$(function(){
+ 
+    $('#test').speedometer();
+     $('#tijiao1').click(function(){
+        var $val=$('#yanqi').val();
+        
+        if ($val<=100) {
+            $('#test').speedometer({ percentage: $val || 0 ,scale:100,background:"kd_03.png",maximum:100});
+        }
+        if ($val>100&&$val<=500) {
+            $('#test').speedometer({ percentage: $val || 0 ,scale:500,background:"kd500.png",maximum:500});
+        }
+        if ($val>500&&$val<=1000) {
+            $('#test').speedometer({ percentage: $val || 0 ,scale:1000,background:"kd1000.jpg",maximum:1000});
+        }
+        
+    });
+    $('#test1').speedometer();
+     $('#tijiao2').click(function(){
+        var $val=$('#chushui').val();
+        if ($val<=100) {
+            $('#test1').speedometer({ percentage: $val || 0 ,scale:100,background:"kd_03.png",maximum:100});
+        }
+        if ($val>100&&$val<=500) {
+            $('#test1').speedometer({ percentage: $val || 0 ,scale:500,background:"kd500.png",maximum:500});
+        }
+        if ($val>500&&$val<=1000) {
+            $('#test1').speedometer({ percentage: $val || 0 ,scale:1000,background:"kd1000.jpg",maximum:1000});
+        }
+        
+    });
+    $('#test2').speedometer();
+   
+     $('#tijiao3').click(function(){
+        var $val=$('#huishui').val();
+        if ($val<=100) {
+            $('#test2').speedometer({ percentage: $val || 0 ,scale:100,background:"kd_03.png",maximum:100});
+        }
+        if ($val>100&&$val<=500) {
+            $('#test2').speedometer({ percentage: $val || 0 ,scale:500,background:"kd500.png",maximum:500});
+        }
+        if ($val>500&&$val<=1000) {
+            $('#test2').speedometer({ percentage: $val || 0 ,scale:1000,background:"kd1000.jpg",maximum:1000});
+        }
+        
+    });
+ 
+
+
+});
+
+
+//第一次调用动态方法
+ ajax_DT();
+  //动态方法
+function ajax_DT(){
+        //url接口地址
+      
+          var url="{:U('facility/ajax_dy?fid='.$fid)}";
+
+       //封装好的方法 传两个参数 url  和  vue封装方法
+       getJson(url,pushDom);
+
+}
+
+ function getJson(url,func){
+    $.ajax({
+        type:'get',
+        url:url,
+        dataType: 'json',
+        success: function(data){    
+ if (data){ 
+  //向vue方法传data参数  
+         func(data);  }else{  alert("失败");   }
+        },
+        error: function(data){ console.log(data);}
+    });
+}
+//vue方法
+function pushDom(data){
+     var vm = new Vue({
+     el: '#app',
+     //先定义空数据
+     data:{ "parname0":"",   "parname1":"", "parname2":"","parname3":"", 
+      "parname4":"" ,"parname5":"","parname6":"","parname7":"","parname8":"","parname9":"",
+            "parname10":"", "parname11":"", "parname12":"","parname13":"","parname14":"",
+            "parname15":"","parname16":"","parname17":"","parname18":"","parname19":"","parname20":"",
+            "parname21":"","parname22":"", "parname23":"", "parname24":"","parname25":"",
+            "parname26":"", "parname27":"","parname28":"",
+        "parcode0":"",   "parcode1":"", "parcode2":"","parcode3":"", 
+      "parcode4":"" ,"parcode5":"","parcode6":"","parcode7":"","parcode8":"","parcode9":"",
+            "parcode10":"", "parcode11":"", "parcode12":"","parcode13":"","parcode14":"",
+            "parcode15":"","parcode16":"","parcode17":"","parcode18":"","parcode19":"","parcode20":"",
+            "parcode21":"","parcode22":"", "parcode23":"", "parcode24":"","parcode25":"",
+            "parcode26":"", "parcode27":"","parcode28":"",
+        "value_name0":"",   "value_name1":"", "value_name2":"","value_name3":"", 
+      "value_name4":"" ,"value_name5":"","value_name6":"","value_name7":"","value_name8":"","value_name9":"",
+            "value_name10":"", "value_name11":"", "value_name12":"","value_name13":"","value_name14":"",
+            "value_name15":"","value_name16":"","value_name17":"","value_name18":"","value_name19":"","value_name20":"",
+            "value_name21":"","value_name22":"", "value_name23":"", "value_name24":"","value_name25":"",
+            "value_name26":"", "value_name27":"","value_name28":"",
+            "value0":"",   "value1":"", "value2":"","value3":"", 
+      "value4":"" ,"value5":"","value6":"","value7":"","value8":"","value9":"",
+            "value10":"", "value11":"", "value12":"","value13":"","value14":"",
+            "value15":"","value16":"","value17":"","value18":"","value19":"","value20":"",
+            "value21":"","value22":"", "value23":"", "value24":"","value25":"",
+            "value26":"", "value27":"","value28":"",
+            "color0":"",   "color1":"", "color2":"","color3":"", 
+      "color4":"" ,"color5":"","color6":"","color7":"","color8":"","color9":"",
+            "color10":"", "color11":"", "color12":"","color13":"","color14":"",
+            "color15":"","color16":"","color17":"","color18":"","color19":"","color20":"",
+            "color21":"","color22":"", "color23":"", "color24":"","color25":"",
+            "color26":"", "color27":"","color28":"",
+"uptime":"",
+
+        },
+
+ ready: function() { 
+          //拆分json数据 并set *数组数据需要用set才能监听
+       var json = data;
+        json=eval(json.data);
+
+   
+          for(var v in json){
+             
+                this.$set('parname'+v, json[v].parname);
+                  this.$set('parcode'+v, json[v].parcode);
+                    this.$set('value_name'+v, json[v].value_name);
+             this.$set('value'+v, json[v].value);
+  this.$set('color'+v, json[v].color);
+  this.$set('uptime', json[v].uptime);
+            }
+        
+
+  $('#tijiao1').click();
+ $('#tijiao2').click();
+ $('#tijiao3').click();
+  // 每隔一段时间调用show 方法
+ 
+  setInterval(this.show, 2500)
+
+
+       }, 
+    methods: {
+        //show方法
+        show:function(){ 
+      //启动vue插件VueResource
+        Vue.use(VueResource);
+        
+  var url="{:U('facility/ajax_dy?fid='.$fid)}";
+     
+     //get访问接口
+        this.$http.get(url).then(function(response) {
+     //json数据拆分 更新值
+        var json = response.data;
+        json=eval(json.data);
+    
+     
+             for(var v in json){
+  
+              
+                this.$set('parname'+v, json[v].parname);
+                 this.$set('parcode'+v, json[v].parcode);
+                   this.$set('value_name'+v, json[v].value_name);
+                    this.$set('value'+v, json[v].value);
+                   this.$set('color'+v, json[v].color);
+                    
+                 this.$set('uptime', json[v].uptime);      
+
+            }
+       
+         $("#yanqi").attr("value",json[1].value);
+          $("#chushui").attr("value",json[2].value);
+         $("#huishui").attr("value",json[3].value);
+
+ $('#tijiao1').click();
+ $('#tijiao2').click();
+ $('#tijiao3').click();
+        })
+         } 
+     }
+        })
+}
+ 
+
+</script> 
+
+
+   
+
+

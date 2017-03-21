@@ -1,0 +1,128 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title>整洁页面</title>
+<style type="text/css">
+.tab{width: 100%}
+	tr td{text-align: center!important;padding: 8px 0!important;width: 50%;}
+	.navtab{border: 1px solid #ddd;background-color: #fff;}
+	.navtab ul li{float: left;width: 25%;text-align: center;}
+	.navtab ul li a{display: inline-block;padding: 15px 0;text-align: center;width: 100%;}
+	.navtab ul li a:hover{text-decoration: none;color: #fff;background: #5a98de;}
+	.nei{padding: 20px 0px;}
+	.hd{display: none;}
+	
+	.act{color: #fff;background: #5a98de;}
+	.clear{clear: both;height: 0;overflow: hidden;}
+	.G{color:#0f0;}
+	.R{color:red;}
+	.B{color:blue;}
+	.Y{color:yellow;}
+	.W{color:white;}
+</style>
+</head>
+<body style="background-color: #111;">
+<div class="tab">
+	<div class="navtab">
+		<ul>
+			<li><a href="#" class="act">操作界面</a></li>
+			<li><a href="#">机组状态</a></li>
+			<li><a href="#">参数设置</a></li>
+<!-- 			<li><a href="#">二期扩展</a></li> -->
+		</ul>
+		<div style="height: 0;overflow: hidden;clear: both;"></div>
+	</div>
+	<div class="tab_main">
+		<div class="nei hd" style="display: block;">
+			<div style="width: 90%;margin: 0 auto ;color: #fff;background:black!important;">
+			<volist name="parame" id="vo">
+			<eq name="vo.ishow" value="3">
+			<div style="float: left;width: 200px ;height: 50px;background:black;padding-left: 50px;">
+			<span>{$vo.parname}</span> 
+			    <span class="{$vo['color']}"><?php echo str_replace($vo['color'],'',$vo['value_name']); ?></span>
+			</div>
+			</eq>
+			</volist>
+			<div class="clear"></div>
+			</div>
+			
+		</div>
+		<div class="nei hd">
+			<div style="width: 500px;margin: 0 auto ;color: #fff;background:black!important;">
+			<volist name="parame" id="vo">
+			<eq name="vo.ishow" value="2">
+			<div style="float: left;width: 200px ;height: 50px;background:black;padding-left: 50px;">
+			<span>{$vo.parname}</span> 
+			    <span class="{$vo['color']}"><?php echo str_replace($vo['color'],'',$vo['value_name']); ?></span>
+			</div>
+			</eq>
+			</volist>
+			<div class="clear"></div>
+			</div>
+			
+		</div>
+		<div class="nei hd">
+			<div style="width: 500px;margin: 0 auto ;color: #fff;background:black!important;">
+			<volist name="parame" id="vo">
+			<eq name="vo.ishow" value="1">
+			<div style="float: left;width: 200px ;height: 50px;background:black;padding-left: 50px;">
+			<span>{$vo.parname}</span> 
+			    <span  class="{$vo['color']}"><?php echo str_replace($vo['color'],'',$vo['value_name']); ?></span>
+			</div>
+			</eq>
+			</volist>
+			<div class="clear"></div>
+			</div>
+			
+		</div>
+		<div class="nei hd">
+			<table class="table table-border table-bordered table-bg table-hover table-sort">
+				<tbody>
+					无
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!--_footer 作为公共模版分离出去--> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/validate-methods.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/jquery.validation/1.14.0/messages_zh.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+	$(function(){
+		$(".navtab a").click(function(){
+			var i=$(this).index(".navtab a");
+			$(".navtab li a").removeClass();
+			$(this).addClass("act");
+			$(".hd:eq("+i+")").show().siblings().hide();
+		})
+	})
+</script>
+</body>
+</html>

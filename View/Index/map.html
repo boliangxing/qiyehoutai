@@ -1,0 +1,184 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=841695243E220E384dae2011040b3b45"></script>
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>我的桌面</title>
+<style type="text/css">
+i{font-size: 20px;margin-right: 10px;font-style: normal;}
+b{font-weight: normal;width: 75%;overflow: hidden;display: inline-block;text-overflow: ellipsis;white-space: nowrap;line-height: 1;}
+.clear{clear: both;height: 0;overflow: hidden;}
+.ba{padding: 20px 10px}
+.ba ul{width: 45%;padding: 10px 2%;text-align: left;}
+.ba ul h1{font-size: 20px;border-bottom: 1px solid #999;margin-bottom: 20px;}
+.ba ul h1 a{text-align: right;float: right;}
+.ba ul li a{display: block;}
+.ba ul li a:hover{color: #c20919;text-decoration: none;}
+	.ba ul li a span{margin-left: 30px;}
+/*body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}*/
+#allmap {width: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+}
+</style>
+</head>
+<body>
+<div class="page-container">
+	<!--<p class="f-20 text-success" style="text-align: center;">欢迎进入鑫华新锅炉物联网管理中心</p>!-->
+	<div style="center">
+	<a href='javascript:;' style='background: #FFFFFF;border-radius: 3px;padding: 2px;text-align: right;font-size: 16px;display: block;margin-top: 8px;'><span style='margin-left:2px'><img src='__PUBLIC__/images/map-ico1.png'>正常</span><span style='margin-left:2px'><img src='__PUBLIC__/images/map-ico2.png'>警告</span><span style='margin-left:2px'><img src='__PUBLIC__/images/map-ico3.png'>报警</span></a>
+	</div>
+	<div id="allmap" style="border-radius:20px;"></div>
+	
+
+</div>
+<footer class="footer mt-20" style="position: absolute;bottom: 0;width: 100%;">
+	<div class="container">
+		<p>鑫华新锅炉物联网管理系统 © 1997-2016  版本2016.06.21</p>
+	</div>
+</footer>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript">
+
+	//设置全屏
+	var Heights = (parseInt($('body').css('height'))-32-35-63);
+	$("#allmap").css('height',Heights);
+
+
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(116.404, 39.915),5);  // 初始化地图,设置中心点坐标和地图级别
+	map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+	map.setCurrentCity("高碑店");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+
+
+
+	// 定制地图样式 
+	  var styleJson = 	[
+							{
+								"featureType": "highway",
+								"elementType": "all",
+								"stylers": {
+								"visibility": "off"
+								}
+						 	}, 
+	 					]
+	map.setMapStyle({styleJson:styleJson});
+
+
+	var size = new BMap.Size(50, 20);
+	map.addControl(new BMap.CityListControl({
+	    anchor: BMAP_ANCHOR_TOP_LEFT,
+	    offset: size,
+	    // 切换城市之间事件
+	    // onChangeBefore: function(){
+	    //    alert('before');
+	    // },
+	    // 切换城市之后事件
+	    // onChangeAfter:function(){
+	    //   alert('after');
+	    // }
+	}));
+
+	//添加自定义控件
+	// var kj = new BMap.CopyrightControl({anchor: BMAP_ANCHOR_TOP_RIGHT});   //设置版权控件位置
+	// map.addControl(kj); 
+	// var bs = map.getBounds();
+
+	// kj.addCopyright({id: 1, content: "<a href='javascript:;' style='background: #FFFFFF;border: 1px solid #8EA8E0;border-radius: 3px;padding: 2px;text-align: center;font-size: 16px;font-weight: bold;display: block;margin-right: 250px;margin-top: 8px;'><span style='margin-left:2px'><img src='__PUBLIC__/images/map-ico1.png'>正常</span><span style='margin-left:2px'><img src='__PUBLIC__/images/map-ico2.png'>警告</span><span style='margin-left:2px'><img src='__PUBLIC__/images/map-ico3.png'>报警</span></a>", bounds: bs});   
+	//Copyright(id,content,bounds)类作为CopyrightControl.addCopyright()方法的参数
+		
+		
+
+	var facilityPoint = <?php echo $facilit ?>;
+	console.log(facilityPoint);
+
+	// 创建标注
+    function addMarker(point, Htmlname, myIcon, lable) {
+        //创建标注点
+        var marker = new BMap.Marker(point, { icon: myIcon });
+        map.addOverlay(marker);
+        
+ 
+        //添加文字
+        // var label = new BMap.Label(lable, { offset: new BMap.Size(-30, 22) });
+        // marker.setLabel(label);
+ 
+        //获取弹出窗体内容
+        var sContent = Htmlname;//getInnerHtml(Htmlname);
+
+        //定义窗口样式
+        var opts = {
+          width : 200,     // 信息窗口宽度
+          height: 100,     // 信息窗口高度
+          title : "<h5 style='font-weight:bold;color:red'>设备信息</h5>" , // 信息窗口标题
+        }
+
+        var infoWindow = new BMap.InfoWindow(sContent, opts);  // 创建信息窗口对象
+        //添加点击标注点事件
+        marker.addEventListener("click", function () {
+            window.marker = marker;
+            this.openInfoWindow(infoWindow);
+            //图片加载完毕重绘infowindow
+            // document.getElementById('r-result').onload = function () {
+                infoWindow.redraw();
+            // }
+        });
+    }
+	for(var info in facilityPoint){
+		var point = new BMap.Point(facilityPoint[info].lng, facilityPoint[info].lat);
+		var ico = '';
+		var bjinfo = '';
+		if(facilityPoint[info].isbj == 0)
+		//设备运行正常
+		{
+			bjinfo = '正常';
+			ico = "__PUBLIC__/images/map-ico1.png";
+		}
+		//设备报警
+		else{
+			bjinfo = facilityPoint[point].bjnote;
+			ico = "__PUBLIC__/images/map-ico3.png";
+		}
+		var myIcon = new BMap.Icon(ico, new BMap.Size(23, 25), {    
+			// 指定定位位置。   
+			// 当标注显示在地图上时，其所指向的地理位置距离图标左上    
+			// 角各偏移10像素和25像素。您可以看到在本例中该位置即是   
+			   // 图标中央下端的尖角位置。    
+			   offset: new BMap.Size(10, 25),    
+			   // 设置图片偏移。   
+			   // 当您需要从一幅较大的图片中截取某部分作为标注图标时，您   
+			   // 需要指定大图的偏移位置，此做法与css sprites技术类似。    
+			   // imageOffset: new BMap.Size(0, 0 - 5 * 25)   // 设置图片偏移    
+		 });
+
+		var Html = 	"<p style='margin-bottom:0'>客户名称："+ facilityPoint[info].userr + "</p>" +
+					"<p style='margin-bottom:0'>报警信息：" + bjinfo + "</p>" + 
+					"<a href='../facility/detail/fid/"+info+"' style='display:block;text-align:right;color:blue'>查看</a>" + 
+					"</div>";
+		addMarker(point,Html,myIcon);
+	}
+
+</script>
+</body>
+</html>

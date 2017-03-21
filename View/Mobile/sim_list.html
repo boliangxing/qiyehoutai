@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/bootstrap.min.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>手机卡列表</title>
+<style type="text/css">
+	.pd-5 span{margin-right: 10px;}
+	.hah input{height: 31px;line-height: 31px;border:1px solid #999;background: #f0f0f0;padding: 0 10px;font-size: 14px;color: #000;}
+	.hah button{height: 33px;line-height: 33px;border:1px solid #999;background: #999;padding: 0 10px;font-size: 14px;color: #000;}
+	.table-sort tbody{text-align: center;}
+	.stop{color: #c20919;}
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 通讯管理 <span class="c-gray en">&gt;</span> 手机卡列表</a></nav>
+<div class="page-container">
+	<div class="text-c"> 日期范围：
+    <input type="text" onfocus="WdatePicker()" id="logmin" class="input-text Wdate" style="width:120px;">
+    -
+    <input type="text" onfocus="WdatePicker()" id="logmax" class="input-text Wdate" style="width:120px;">
+    <input type="text" name="" id="" placeholder="输入关键字" style="width:250px" class="input-text"><button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont"></i> 搜索</button>
+  </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">默认列表</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">查询列表</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">未知状态</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">正常使用</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">停机保号</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">欠费停机</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">空号</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">回收站</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">卡号入库</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">批量导入</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">更新运行时间</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">话费查询结果</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">充值清单打印</a></span>
+	</div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="40"><a href="#">序号</a></th>
+					<th width="80"><a href="#">号码</a></th>
+					<th width="130"><a href="#">通讯编号</a></th>
+					<th width="220"><a href="#">使用用户</a></th>
+					<th width="50"><a href="#">余额</a></th>
+					<th width="50"><a href="#">总消费</a></th>
+					<th width="70"><a href="#">充值时间</a></th>
+					<th width="70"><a href="#">开通日期</a></th>
+					<th width="70"><a href="#">到期续费</a></th>
+					<th width="80"><a href="#">最后通讯</a></th>
+					<th width="150"><a href="#">来源</a></th>
+					<th width="50"><a href="#">卡状态</a></th>
+					<th width="50"><a href="#">管理</a></th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="list" id="vo">
+				<tr>
+					<td><a href="#">{$vo.id}</a></td>
+					<td>{$vo.mobile}</td>
+					<td>{$vo.dtuid}</td>
+					<td>{$vo.userr}</td>
+					<td><a href="#" target="_blank">{$vo.yumoney}</a></td>
+					<td>{$vo.zongxiaofei}</td>
+					<td><a href="#" target="_blank">{$vo.cztime}</a></td>
+					<td>{$vo.starttime}</td>
+					<td>2015-08-31</td>
+					<td>{$vo.lastquerytime}</td>
+					<td>{$vo.laiyuan}</td>
+					<td>停机保号</td>	
+					<td><span><a href="#" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除">
+					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></span></td>
+				</tr>
+			</volist>
+			</tbody>
+		</table>
+		<div class="page">{$page}</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> 
+<script type="text/javascript">
+</script>
+</body>
+</html>
+<script type="text/javascript">
+
+	function article_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$(obj).parents("tr").remove();
+		layer.msg('已删除!',{icon:1,time:1000});
+
+	});
+}
+</script>
+<script type="text/javascript">
+	$(".layui-layer-btn0").click(function(){
+	$(".layui-layer").css("display","none")
+	$(".layui-layer-shade").css("display","none")
+})
+</script>

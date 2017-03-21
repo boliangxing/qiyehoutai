@@ -1,0 +1,326 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/bootstrap.min.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加合同</title>
+<style>
+	.fl{float: left;}
+	.clear{clear: both;height: 0;overflow: hidden;}
+	.kh{float: left;width: 45%;}
+	.kh2{width: 80%; margin:20px auto;}
+	.kh li,.kh2 li{margin: 10px 0 10px 5%;}
+	.kh li label,.kh2 li label{display: inline-block;width: 100px;text-align: right;line-height: 35px;float: left;}
+	.kh li input,.kh2 li input{height: 35px;line-height: 35px;border:1px solid #ddd;padding: 0 10px;width: 65%;}
+	li input:hover,li input:focus,li select:focus,li select:hover{border-color: #c20919;}
+	li select{width: 222px;height: 37px;line-height: 37px;padding: 0 10px;border:1px solid #ddd;}
+	.kh2 textarea{width: 65%;height: 60px;}
+	#bbt:active {color: rgba(255, 255, 255, 0.4);background-color: #a80d1a;}
+	table th{border: 1px solid #ddd;border-left: none;padding: 10px 0;text-align: center;}
+	table td{border: 1px solid #ddd;border-left: none;padding: 5px 0;border-top:none;text-align: center;}
+	td input{padding: 5px;border:1px solid #fff;text-align: center;}
+  	td button{padding: 5px 10px;border:0;text-align: center;background: none;}
+  	td input:hover,td input:focus{border-color: #c20919;}
+  	td a{color: #c20919}
+</style>
+<style type="text/css">
+	.pd-5 span{margin-right: 10px;}
+	.hah input{height: 31px;line-height: 31px;border:1px solid #ddd;background: #f0f0f0;padding: 0 10px;color: #000;}
+	.hah button{height: 33px;line-height: 33px;border:1px solid #ddd;background: #ddd;padding: 0 10px;color: #000;}
+	.table-sort tbody{text-align: center;}
+</style>
+
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 合同管理 <span class="c-gray en">&gt;</span> 添加合同</a></nav>
+<form action="" method="POST" enctype="multipart/form-data">
+<div class="page-container">
+<h1 style="width: 23%;text-align: left;font-size: 16px;height: 30px;line-height: 30px;padding: 10px 0;margin: 0 0 15px 40px;">添加合同</h1>
+	<ul class="kh">
+		<li >
+			
+				<label for="bt">合同编号：</label>
+				<input type="text" name="bianhao" placeholder="必填" id="bt" value="{$data.hetong.bianhao}">
+			
+		</li>
+		<li>
+		
+			<label for="bt118" class="fl">客户名称：</label>
+			<select name="customer_id" class="fl" style="margin-left: 4px;">
+			<volist name="data.customer" id="vo">
+				<option value="{$vo.customer_id}" <eq name="data.hetong.customer_id" value="$vo.customer_id">selected</eq>>{$vo.customer_name}</option>
+			</volist>
+			</select>
+			<!-- <input type="text" placeholder="选择客户" id="bt118" class="fl" style="margin-left: 4px;"> -->
+			<div class="clear"></div>
+			
+		</li>
+		<li>
+		
+			<label for="bt1188" class="fl">使用方：</label>
+			<select name="userr_id" class="fl" style="margin-left: 4px;">
+				<volist name="data.customer" id="vo">
+				<option value="{$vo.customer_id}" <eq name="data.hetong.userr_id" value="$vo.customer_id">selected</eq>>{$vo.customer_name}</option>
+				</volist>
+			</select>
+			<input type="hidden" name="userr">
+			<div class="clear"></div>
+			
+		</li>
+		<li>
+		
+			<label for="bt2">支付方式：</label>
+			<input type="text" name="payment" placeholder="" id="bt2" value="{$data.hetong.payment}">
+			
+		</li>
+		<li>
+		
+			<label for="bt5">签约代表：</label>
+			<input type="text" name="seller_id" placeholder="" id="bt5" value="{$data.hetong.seller_id}">
+			
+		</li>
+		<li>
+		
+			<label for="bt12">调试日期：</label>
+			<input type="text" name="tstime" placeholder="请选择日期" id="bt12" onclick="WdatePicker()" value="{$data.hetong.tstime|default=''|date="Y-m-d",###}">
+			
+		</li>
+	</ul>
+	<ul class="kh">
+	<li>
+		
+			<label for="bt11">存档编号：</label>
+			<input type="text" name="cdbh" placeholder="请输存档编号" id="bt11" value="{$data.hetong.cdbh}">
+			
+		</li>
+		<li>
+		
+			<label for="bt19">项目名称：</label>
+			<input type="text" name="project" placeholder="请输入项目名称" id="bt19" value="{$data.hetong.project}">
+			
+		</li>
+		<li>
+			
+			<label>合同所属公司：</label>
+			<select name="belong">
+						<option value="河北鑫华新" <eq name="data.hetong.belong" value="河北鑫华新">selected</eq>>河北鑫华新</option>
+						<option value="鑫华新" <eq name="data.hetong.belong" value="鑫华新">selected</eq>>鑫华新</option>
+						<option value="新化县保定" <eq name="data.hetong.belong" value="新化县保定">selected</eq>>新化县保定</option>
+			</select>
+			
+		</li>
+		<li>
+		
+			<label for="bt10">保修期限：</label>
+			<input type="text" name="baoxiu" placeholder="请输入保修期限**年" id="bt10" value="{$data.hetong.baoxiu}">
+			
+		</li>
+		<li>
+		
+			<label for="bt10">签订日期：</label>
+			<input type="text" name="qdtime" placeholder="请选择日期" id="bt10" onclick="WdatePicker()" value="{$data.hetong.qdtime|default=''|date="Y-m-d",###}">
+			
+		</li>
+		<li>
+		
+			<label for="bt9">质保金：</label>
+			<input type="text" name="zhibaojin" placeholder="请输入质保金**元" id="bt9" value="{$data.hetong.zhibaojin}">
+			
+		</li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<div class="ht" style="width:80%;margin-left: 60px ;">
+<h1 style="width: 23%;text-align: left;font-size: 16px;height: 30px;line-height: 30px;padding: 10px 0;margin: 0 0 30px 0px;">添加产品</h1>
+	<div class="tj">
+		<table>
+			<tbody>
+				<tr>
+					<th >序号</th>
+					<th>产品型号</th>
+					<th>金额</th>
+					<th>出厂编号</th>
+					<th >燃烧器型号</th>
+					<th>燃烧器编号</th>
+					<th>控制器型号</th>
+					<th >控制器标号</th>
+					<th><a href="#" style="background: #333;color: #fff;border-radius: 4px;padding: 6px 10px;" id="addr" onclick="add(this)">
+					<span class="glyphicon glyphicon-plus addr" aria-hidden="true"></span></a></th>
+				</tr>
+				<volist name="buy" id="pvo" key="k">
+				<tr>
+					<td>
+						+{$k}
+					</td>
+
+					<td>
+						<select name="product_id[{$k}]">
+							<volist name='data.product' id='vo'>
+							<option value='{$vo.product_id}' <eq name="pvo.product_id" value="$vo.product_id">selected</eq> >
+							{$vo.product_name}
+							</option>
+							</volist>
+						</select>
+					</td>
+					
+
+					<td>
+						<input type="text" name="amount[{$k}]" value="{$pvo.amount}"></input>
+
+					</td>
+					<td>
+						<input type="text" name="product_code[{$k}]" value="{$pvo.product_code}"></input>
+
+					</td>
+					<td>
+						<input type="text" name="rsqxh[{$k}]" value="{$pvo.rsqxh}"></input>
+
+					</td>
+					<td>
+						<input type="text" name="rsqbh[{$k}]" value="{$pvo.rsqbh}"></input>
+
+					</td>
+					<td>
+						<input type="text" name="kzxxh[{$k}]" value="{$pvo.kzxxh}"></input>
+
+					</td>
+					
+					<td>
+						<input type="text" name="kzxbh[{$k}]" value="{$pvo.kzxbh}"></input>
+
+					</td>
+					<td>
+						<input type="checkbox" checked=""></input>
+
+					</td>
+				</tr>
+				</volist>
+			</tbody>
+		</table>
+	</div>
+</div>
+<ul class="kh2">
+<li>
+	
+		<label>金额总计：</label>
+		<input type="text" name="total_amount" placeholder="请输金额"  value="{$data.hetong.total_amount}">
+		<a href="javascript:;" onclick="sunmoney()">合计金额</a>
+	</li>
+	<li>
+	
+		<label>机组信息：</label>
+		<input type="text" name="jizuxx" placeholder=""  value="{$data.hetong.jizuxx}">
+		
+	</li>
+	
+	<li>
+	
+		<label>设备清单：</label>
+		<input type="text" name="equipment_list" placeholder="" value="{$data.hetong.equipment_list}">
+		
+	</li>
+	<li>
+	
+		<label for="bt10">合同扫描件：</label>
+		<input type="file" name="attachment" value={$data.hetong.attachment} placeholder="点击上传" style="float: left;">
+		
+		<div class="clear"></div>
+	
+	</li>
+	<li>
+	
+		<label style="height: 35px;">备注：</label>
+		<textarea name="memo" placeholder="">{$data.hetong.memo}</textarea>
+		
+	</li>
+	<li>
+		<label>责任人：</label>
+		<input type="text"  placeholder="" value="{$data.hetong.staff_name}" id="staff_name" onfocus="yuangong('选择员工','{:U('hetong/yuangong')}','100001','900','500')">
+		<input type="hidden" value="{$data.hetong.zeren_id}" id="staff_id" name="zeren_id"></input>
+	</li>
+</ul>
+<div style="width: 100%;text-align: left;padding: 30px 100px;">
+	<button type="submit" style="padding: 1rem;background: #5a98de;border: 0;color: #fff;">提交保存</button>
+</div>
+</div>
+</form>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> 
+
+<script>
+sunmoney();
+function yuangong(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+
+
+var i = {$count|default="1"};
+
+$(function(){
+	var userr = $("[name='userr_id'] option:selected").text();
+	$("[name='userr']").val(userr);
+	// alert(userr);
+})
+
+$("[name='userr_id']").change(function(){
+	var userr = $("[name='userr_id'] option:selected").text();
+	$("[name='userr']").val(userr);
+})
+
+function add(obj){
+	var tpl = "<tr> " +
+				"	<td>+"+ i +"</td>" +
+				"	<td><select name='product_id["+i+"]'><volist name='data.product' id='vo'><option value='{$vo.product_id}'>{$vo.product_name}</option></volist></select></td>" +
+				"	<td><input type='text' value='0' name='amount["+i+"]'></td>" +
+				"	<td><input type='text' name='product_code["+i+"]'></td>" +
+				"	<td><input type='text' name='rsqxh["+i+"]'></td>" +
+				"	<td><input type='text' name='rsqbh["+i+"]'></td>" +
+				"	<td><input type='text' name='kzxxh["+i+"]'></td>" +
+				"	<td><input type='text' name='kzxbh["+i+"]'></td>" +
+				"	<td><input type='checkbox' checked></td>" +
+				"</tr>";
+	i++;
+	$('.tj table tbody').append(tpl);
+}
+
+function sunmoney(){
+	linenum = 0;
+	money = 0;
+	var line = $('.tj table tbody tr');
+	line.each(function(){
+		if(linenum!=0){
+			money += parseInt($(this).find('td').eq(2).find('input').val());
+			//console.log($(this).find('td').eq(2).find('input').val());
+		}
+		linenum ++;
+	})
+	//alert(money);
+	$("[name='total_amount']").val(money);
+}
+
+
+</script>
+</body>
+</html>

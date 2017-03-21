@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/bootstrap.min.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]--><title>产品分类</title>
+<style type="text/css">
+  .pd-5 span{margin-right: 10px;}
+  .hah input{height: 31px;line-height: 31px;border:1px solid #ddd;background: #f0f0f0;padding: 0 10px;color: #000;}
+  .hah button{height: 33px;line-height: 33px;border:1px solid #ddd;background: #ddd;padding: 0 10px;color: #000;}
+  tbody{text-align: center;border-left: 1px solid #ddd;border-top: 1px solid #ddd;}
+  td{text-align: center;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px;border-top: 1px solid #ddd;}
+  td input{padding: 5px;border:1px solid #fff;text-align: center;}
+  td button{padding: 5px 10px;border:0;text-align: center;background: none;}
+  td input:hover,td input:focus{border-color: #ddd;}
+  td a{color: #c20919}
+  tr th{text-align: center;padding: 8px 0;border-right: 1px solid #ddd; }
+  .bbt:hover{text-decoration: none;color: #555;}
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 系统设置 <span class="c-gray en">&gt;</span> 城市区域管理</a></nav>
+<div class="page-container">
+  <form action="" method="POST">
+  <div class="cl pd-5 bg-1 bk-gray mt-20">
+
+    <span class="l">添加城市</span>
+    <span class="l"><input type="text" placeholder="请输入城市" style="border: 1px solid #ddd" name="zonename"></span>
+    <span class="l">到</span>
+     <span class="l">
+      <select name="pid" onchange="dingwei(this.value)">
+				<option value="0">--请选择省份或国家--</option>
+						<volist name="select" id="vo">
+						<option value="{$vo.zoneid}" <?php if($vo['zoneid']==$pid){echo 'selected';} ?>>{$vo.zonename}</option>
+            </volist>
+			</select>
+     </span>
+     <span class="l"><button class="bbt" type="submit">确定</button></span>
+  </div>
+  </form>
+<div>
+<table class="datalist" cellspacing="0" cellpadding="2" width="666" border="0">
+  <tbody>
+  <tr class="header bg-1" align="center">
+    <th>ID</th>
+    <th>名称</th>
+    <th>排序</th>
+    <th>修改</th>
+    <th>删除</th>
+  </tr>
+  <tr bgcolor="#ffffff">
+  <volist name="zone" id="vo">
+  <form action="{:U('setting/setting_zonesave')}" method="POST">
+    <td>{$vo.zoneid}</td>
+    <td><input type="text" name="zonename" value="{$vo.zonename}"></td>
+    <td><input type="text" name="xuhao" value="{$vo.xuhao}" size="6"></td>
+    <td><input type="hidden" name="zoneid" value="{$vo.zoneid}" ><button>确定</button></td>
+    <td><span><a class="ml-5"  href="{:U('Setting/setting_zonedel?id='.$vo['zoneid'])}" title="删除">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></span></td>
+    </td>
+  </tr>
+  </form>
+    </volist>
+  </tbody>
+</table>
+
+</div>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> 
+</body>
+</html>
+<script type="text/javascript">
+
+function article_del(obj,id){
+  layer.confirm('确认要删除吗？',function(index){
+    $(obj).parents("tr").remove();
+    layer.msg('已删除!',1);
+  });
+}
+
+function dingwei(zoneid){
+  location.href="{:U('setting/setting_zone')}?pid="+zoneid;
+}
+</script>

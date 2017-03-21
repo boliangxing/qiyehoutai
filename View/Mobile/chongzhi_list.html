@@ -1,0 +1,109 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/Hui-iconfont/1.0.7/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/icheck/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" href="__PUBLIC__/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/lib/bootstrap.min.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>充值列表</title>
+<style type="text/css">
+	.pd-5 span{margin-right: 10px;}
+	.hah input{height: 31px;line-height: 31px;border:1px solid #999;background: #f0f0f0;padding: 0 10px;font-size: 14px;color: #000;}
+	.hah button{height: 33px;line-height: 33px;border:1px solid #999;background: #999;padding: 0 10px;font-size: 14px;color: #000;}
+	.table-sort tbody{text-align: center;}
+	.stop{color: #c20919;}
+</style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 通讯管理 <span class="c-gray en">&gt;</span> 充值列表</a></nav>
+<div class="page-container">
+	<div class="text-c"> 日期范围：
+	    <input type="text" onfocus="WdatePicker()" id="logmin" class="input-text Wdate" style="width:120px;">
+	    -
+	    <input type="text" onfocus="WdatePicker()" id="logmax" class="input-text Wdate" style="width:120px;">
+	    <input type="text" name="" id="" placeholder="输入关键字" style="width:250px" class="input-text"><button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont"></i> 搜索</button>
+	  </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">卡号列表</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">全部充值</a></span>
+		<span class="l"><a class="btn btn-primary radius" href="javascript:;">添加充值记录</a></span>
+	</div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th width="60"><a href="#">序号</a></th>
+					<th width="110"><a href="#">号码</a></th>
+					<th width="110"><a href="#">话费</a></th>
+					<th width="100"><a href="#">支付方式</a></th>
+					<th width="80"><a href="#">经手人</a></th>
+					<th width="150"><a href="#">充值时间</a></th>
+					<th ><a href="#">备注</a></th>
+					<th width="60"><a href="#">备注</a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1375</td>
+					<td><a href="#">13484092013</a></td>
+					<td>10</td>
+					<td>支付宝</td>
+					<td>王岳定</td>
+					<td>2016-05-23 15:05</td>
+					<td>暂无</td>
+					<td><a href="#" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/layer/2.1/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/lib/laypage/1.2/laypage.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui/js/H-ui.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/static/h-ui.admin/js/H-ui.admin.js"></script> 
+</body>
+</html>
+<script type="text/javascript">
+
+/*资讯-编辑*/
+function article_edit(title,url,id,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+function article_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$(obj).parents("tr").remove();
+		layer.msg('已删除!',1);
+	});
+}
+$(".layui-layer-btn0").click(function(){
+	$(".layui-layer").css("display","none")
+	$(".layui-layer-shade").css("display","none")
+})
+</script> 

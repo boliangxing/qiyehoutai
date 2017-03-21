@@ -1,0 +1,39 @@
+<?php
+    if(C('LAYOUT_ON')) {
+        echo '{__NOLAYOUT__}';
+    }
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>跳转提示</title>
+    <style type="text/css">
+    body {margin-top: 15%;font-size: 0.875em;/*font-weight:bold;*/color: #666;background-color: #fff;font-family: "微软雅黑";}
+    a {color: #666;text-decoration: none;}    
+    .wrap { width: 600px;height: auto;background: #1BA1E2;margin: 0 auto;border-radius: 5px;box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);overflow: hidden;}    
+    @media screen and (max-width: 600px) {
+        .wrap {width: 450px;height: auto;background: #1BA1E2;margin: 0 auto; border-radius: 5px;box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);overflow: hidden;}
+    }   
+    @media screen and (max-width: 450px) {
+        .wrap {width: 300px;height: auto;background: #1BA1E2;margin: 0 auto;border-radius: 5px;box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6);overflow: hidden;}
+    }    
+    .win-title {color: #fff;margin-left: 5px;line-height: 2em;}   
+    .win-text {width: 100%;height: auto;background: #fff;text-align: center;padding: 6% 0;}   
+    .win-text p {margin: 0 10%;}
+    .wrap.error {background: #cc3333}
+    .wrap.error .win-text span {color: #cc3333;}
+    </style>
+</head>
+
+<body>
+<div class="wrap error">
+        <div class="win-title">系统提示</div>
+        <div class="win-text">
+            <span style="color:#CC3333">您没有权限</span>
+        </div>
+    </div>
+</body>
+</html>
+
